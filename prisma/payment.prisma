@@ -1,8 +1,12 @@
 model Payment {
   id String @id @default(uuid())
 
+  payerId         String
+  rentalRequestId String
+  payment         RentalRequest @relation(fields: [rentalRequestId], references: [id], onDelete: Cascade)
+
   amount                  Decimal         @db.Decimal(12, 2)
-  currency                String          @default("usd")
+  currency                String          @default("bdt")
   provider                PaymentProvider @default(STRIPE)
   method                  PaymentMethod   @default(CARD)
   status                  PaymentStatus   @default(PENDING)
@@ -12,6 +16,8 @@ model Payment {
   providerResponse        Json?
   paidAt                  DateTime?
   failedAt                DateTime?
+
+  payer User @relation(fields: [payerId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

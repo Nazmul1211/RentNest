@@ -8,6 +8,11 @@ model User {
   role      UserRole
   status    UserStatus @default(ACTIVE)
 
+  properties    Property[]
+  payment       Payment[]
+  reviews       Review[]
+  rentalRequest RentalRequest[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

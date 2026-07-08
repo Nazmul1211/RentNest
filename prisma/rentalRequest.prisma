@@ -1,6 +1,9 @@
 model RentalRequest {
   id String @id @default(uuid())
 
+  propertyId String
+  tenantId   String
+
   status        RentalStatus @default(PENDING)
   moveInDate    DateTime
   moveOutDate   DateTime?
@@ -13,6 +16,12 @@ model RentalRequest {
   rejectedAt    DateTime?
   paidAt        DateTime?
   completedAt   DateTime?
+
+  properties Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  tenant     User     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  payments Payment[]
+  reviews  Review[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,10 +1,19 @@
 model Review {
-  id        String       @id @default(uuid())
+  id String @id @default(uuid())
+
+  tenantId        String
+  rentalRequestId String
+  propertyId      String
+
   rating    Int
   comment   String
   status    ReviewStatus @default(PUBLISHED)
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
+
+  tenant        User          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  rentalRequest RentalRequest @relation(fields: [rentalRequestId], references: [id])
+  property      Property      @relation(fields: [propertyId], references: [id])
 
   @@map("reviews")
 }

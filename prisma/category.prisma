@@ -1,0 +1,11 @@
+model Category {
+  id String @id @default(uuid())
+
+  name        String
+  slug        String
+  description String?
+  isActive    Boolean
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

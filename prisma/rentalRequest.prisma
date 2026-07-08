@@ -1,0 +1,21 @@
+model RentalRequest {
+  id String @id @default(uuid())
+
+  status        RentalStatus @default(PENDING)
+  moveInDate    DateTime
+  moveOutDate   DateTime?
+  totalMonths   Int?
+  monthlyRent   Decimal      @db.Decimal(12, 2)
+  totalAmount   Decimal      @db.Decimal(12, 2)
+  tenantMessage String?
+  landlordNote  String?
+  approvedAt    DateTime?
+  rejectedAt    DateTime?
+  paidAt        DateTime?
+  completedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("rentalRequests")
+}

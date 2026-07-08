@@ -1,12 +1,54 @@
 enum UserRole {
-    TENANT
-    LANDLORD
-    ADMIN
+  TENANT
+  LANDLORD
+  ADMIN
 }
 
-
 enum UserStatus {
-    ACTIVE
-    BANNED 
-    DELATED
+  ACTIVE
+  BANNED
+  DELATED
+}
+
+enum PropertyStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum RentalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  PAYMENT_PENDING
+  PAID
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum ReviewStatus {
+  PUBLISHED
+  HIDDEN
+}
+
+enum PaymentProvider {
+  STRIPE
+  SSLCOMMERZ
+}
+
+enum PaymentMethod {
+  CARD
+  MOBILE_BANKING
+  BANK_TRANSFER
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REFUNDED
 }

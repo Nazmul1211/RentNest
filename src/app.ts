@@ -6,6 +6,7 @@ import config from "./config/index.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { categoryRoutes } from "./modules/categories/route.categories.js";
+import { landlordRoutes } from "./modules/landlord/route.landlord.js";
 
 const app: Application = express();
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/landlord", landlordRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

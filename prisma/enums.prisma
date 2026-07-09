@@ -6,8 +6,10 @@ enum UserRole {
 
 enum UserStatus {
   ACTIVE
+  INACTIVE
+  SUSPENDED
   BANNED
-  DELATED
+  DELETED
 }
 
 enum PropertyStatus {

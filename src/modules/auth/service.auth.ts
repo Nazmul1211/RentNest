@@ -3,6 +3,8 @@ import { prisma } from "../../lib/prisma.js";
 import type { IUserPayload } from "./interface.auth.js";
 import bcrypt from "bcrypt";
 import config from "../../config/index.js";
+import { jwtUtils } from "../../utils/jwt.js";
+import type { JwtPayload } from "jsonwebtoken";
 
 
 const registerUserIntoDB = async (payload: IUserPayload) => {
@@ -47,7 +49,6 @@ const registerUserIntoDB = async (payload: IUserPayload) => {
 
 }
 
-
 const loginUserFromDB = async (email: string, password: string) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -55,8 +56,14 @@ const loginUserFromDB = async (email: string, password: string) => {
     },
   })
 
-  if(!user) {
+  if (!user) {
     throw new Error("User not found");
+  } else if(user.status === "SUSPENDED") {
+    throw new Error("User is suspended");
+  } else if(user.status === "BANNED") {
+    throw new Error("User is banned");
+  } else if(user.status === "DELETED") {
+    throw new Error("User is deleted");
   }
 
   const isPasswordMatched = await bcrypt.compare(password, user.password);
@@ -65,16 +72,96 @@ const loginUserFromDB = async (email: string, password: string) => {
     throw new Error("Password is incorrect");
   }
 
-  return await prisma.user.findUniqueOrThrow({
+
+  const jwtPayload = {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    status: user.status,
+  }
+
+  const accessToken =  jwtUtils.createToken(
+    jwtPayload as object, 
+    config.jwt_secret as string, 
+    config.jwt_access_expiration as string
+  );
+
+  const refreshToken = jwtUtils.createToken(
+    jwtPayload as object,
+    config.jwt_refresh_secret as string,
+    config.jwt_refresh_expiration as string
+  );
+  
+
+  return {
+    accessToken,
+    refreshToken,
+  //   user: await prisma.user.findUniqueOrThrow({
+  //   where: {
+  //     id: user.id, 
+  //     email: user.email || email,
+  //   },
+  //   omit : {
+  //     password: true,
+  //   }
+  // })
+  }
+
+
+
+  // const userData = {
+  //   accessToken,
+  //   refreshToken,
+  //   user: {
+  //     result
+  //   }
+  // }
+
+}
+
+
+const refreshToken = async (refreshToken: string) => {
+  const verifiedRefreshToken = jwtUtils.verifyToken(refreshToken, config.jwt_refresh_secret as string);
+
+  if(!verifiedRefreshToken.success) {
+    throw new Error(verifiedRefreshToken.error);
+  }
+
+  const {id, email} = verifiedRefreshToken.data as JwtPayload;
+
+
+  const user = await prisma.user.findUniqueOrThrow({
     where: {
-      id: user.id, 
-      email: user.email || email,
-    },
-    omit : {
-      password: true,
+      id: id,
+      email: email,
     }
   })
 
+  if(!user) {
+    throw new Error("User not found");
+  } else if(user.status === "SUSPENDED") {
+    throw new Error("User is suspended");
+  } else if(user.status === "BANNED") {
+    throw new Error("User is banned");
+  } else if(user.status === "DELETED") {
+    throw new Error("User is deleted");
+  }
+
+  const jwtPayload = {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    status: user.status,
+  } as JwtPayload;
+
+  const newAccessToken = jwtUtils.createToken(
+    jwtPayload, 
+    config.jwt_secret as string, 
+    config.jwt_access_expiration as string);
+
+    return {accessToken: newAccessToken};
 }
 
 
@@ -82,4 +169,5 @@ const loginUserFromDB = async (email: string, password: string) => {
 export const authService = {
     registerUserIntoDB,
     loginUserFromDB,
-}
+    refreshToken
+} 

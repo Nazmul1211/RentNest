@@ -34,6 +34,30 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+const loginUser = catchAsync(async (req: Request, res: Response) => {
+  const payload = req.body;
+
+  if (!payload) {
+    throw new Error("Payload is required"); 
+  }
+
+  const { email, password } = payload;
+
+ const result = await authService.loginUserFromDB(email, password);
+
+ sendResponse(res, {
+  success: true,
+  statusCode: httpsStatus.OK,
+  message: "User logged in successfully",
+  data: {
+    result,
+  },
+ })
+})
+
+
 export const authController = {
   registerUser,
+  loginUser,
 };

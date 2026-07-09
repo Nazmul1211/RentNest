@@ -8,7 +8,7 @@ import config from "../../config/index.js";
 const registerUserIntoDB = async (payload: IUserPayload) => {
   const {name, email, password, phone, role} = payload;
 
-  console.log(name, email, password, phone, role, "payload from service.user.ts");
+  // console.log(name, email, password, phone, role, "payload from registerUserIntoDB");
 
   const existingUser = await prisma.user.findUnique({
     where: {
@@ -48,6 +48,38 @@ const registerUserIntoDB = async (payload: IUserPayload) => {
 }
 
 
+const loginUserFromDB = async (email: string, password: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email
+    },
+  })
+
+  if(!user) {
+    throw new Error("User not found");
+  }
+
+  const isPasswordMatched = await bcrypt.compare(password, user.password);
+
+  if(!isPasswordMatched) {
+    throw new Error("Password is incorrect");
+  }
+
+  return await prisma.user.findUniqueOrThrow({
+    where: {
+      id: user.id, 
+      email: user.email || email,
+    },
+    omit : {
+      password: true,
+    }
+  })
+
+}
+
+
+
 export const authService = {
     registerUserIntoDB,
+    loginUserFromDB,
 }

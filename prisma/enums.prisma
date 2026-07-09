@@ -18,6 +18,14 @@ enum PropertyStatus {
   ARCHIVED
 }
 
+enum PropertyType {
+  SMALL
+  MEDIUM
+  LARGE
+  EXTRA_LARGE
+  UNKNOWN
+}
+
 enum RentalStatus {
   PENDING
   APPROVED

@@ -13,15 +13,14 @@ model Payment {
   stripeCustomerId        String?
   paidAt                  DateTime?
 
-  payer User @relation(fields: [payerId], references: [id], onDelete: Cascade)
-  payment         RentalRequest @relation(fields: [rentalRequestId], references: [id], onDelete: Cascade)
+  payer   User          @relation(fields: [payerId], references: [id], onDelete: Cascade)
+  payment RentalRequest @relation(fields: [rentalRequestId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("payments")
-
   @@index([rentalRequestId])
   @@index([payerId])
   @@index([status])
+  @@map("payments")
 }

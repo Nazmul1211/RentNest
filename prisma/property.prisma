@@ -15,6 +15,7 @@ model Property {
   postalCode      String?
   bedrooms        Int?
   bathrooms       Int?
+  type            PropertyType?  @default(UNKNOWN)
   sizeSqft        Decimal?       @db.Decimal(10, 2)
   images          String[]       @default([])
   amenities       String[]       @default([])
@@ -25,9 +26,9 @@ model Property {
   rentalRequests RentalRequest[]
   reviews        Review[]
 
-  userId         String?
-  landlord           User?           @relation(fields: [userId], references: [id])
-  category       Category?       @relation(fields: [categoryId], references: [id])
+  userId   String?
+  landlord User?     @relation(fields: [userId], references: [id])
+  category Category? @relation(fields: [categoryId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -15,9 +15,8 @@ model Review {
   rentalRequest RentalRequest @relation(fields: [rentalRequestId], references: [id])
   property      Property      @relation(fields: [propertyId], references: [id])
 
-  @@map("reviews")
-
   @@index([propertyId])
   @@index([tenantId])
   @@index([rating])
+  @@map("reviews")
 }

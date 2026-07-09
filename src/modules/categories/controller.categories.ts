@@ -1,12 +1,12 @@
 import catchAsync from "../../utils/catchAsync.js";
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import { sendResponse } from "../../utils/sendResponse.js";
 import httpsStatus from "http-status";
 import { categoryService } from "./service.categories.js";
 
 
 const createCategory = catchAsync(
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response, next: NextFunction) => {
   const payload = req.body;
     if (!payload) {
         throw new Error("Category data is required");
@@ -25,7 +25,7 @@ const createCategory = catchAsync(
 
 
 const getAllCategories = catchAsync(
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response, next: NextFunction) => {
         const categories = await categoryService.getAllCategoriesFromDB();
 
         sendResponse(res, {

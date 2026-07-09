@@ -1,10 +1,10 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync.js";
 import { authService } from "./service.auth.js";
 import { sendResponse } from "../../utils/sendResponse.js";
 import httpsStatus from "http-status";
 
-const registerUser = catchAsync(async (req: Request, res: Response) => {
+const registerUser = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const payload = req.body;
 
   if (!payload) {
@@ -24,7 +24,7 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 
-const loginUser = catchAsync(async (req: Request, res: Response) => {
+const loginUser = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const payload = req.body;
 
   if (!payload) {
@@ -86,7 +86,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 });
 
 
-const getMyProfile = catchAsync(async (req: Request, res: Response) => {
+const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const user = req.user;
 
   if(!user) {

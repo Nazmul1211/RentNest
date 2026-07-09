@@ -4,7 +4,7 @@ model Category {
   name        String
   slug        String
   description String?
-  isActive    Boolean
+  isActive    Boolean @default(true)
 
   properties Property[]
 

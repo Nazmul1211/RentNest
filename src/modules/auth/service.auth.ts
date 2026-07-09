@@ -6,15 +6,22 @@ import config from "../../config/index.js";
 import { jwtUtils } from "../../utils/jwt.js";
 import type { JwtPayload } from "jsonwebtoken";
 
+const normalizeEmail = (email: string) => email.trim().toLowerCase();
+
 
 const registerUserIntoDB = async (payload: IUserPayload) => {
   const {name, email, password, phone, role} = payload;
+  const normalizedEmail = normalizeEmail(email);
 
   // console.log(name, email, password, phone, role, "payload from registerUserIntoDB");
 
+  if(role === "ADMIN") {
+    throw new Error("You are not allowed to register as an admin");
+  }
+
   const existingUser = await prisma.user.findUnique({
     where: {
-      email: email
+      email: normalizedEmail
     }
   })
   
@@ -27,7 +34,7 @@ const registerUserIntoDB = async (payload: IUserPayload) => {
   const createUser = await prisma.user.create({
       data: {
         name, 
-        email,
+        email: normalizedEmail,
         password: hashPassword,
         phone: phone ?? null,
         role: role as UserRole
@@ -50,9 +57,10 @@ const registerUserIntoDB = async (payload: IUserPayload) => {
 }
 
 const loginUserFromDB = async (email: string, password: string) => {
+  const normalizedEmail = normalizeEmail(email);
   const user = await prisma.user.findUnique({
     where: {
-      email: email
+      email: normalizedEmail
     },
   })
 
@@ -97,26 +105,16 @@ const loginUserFromDB = async (email: string, password: string) => {
   return {
     accessToken,
     refreshToken,
-  //   user: await prisma.user.findUniqueOrThrow({
-  //   where: {
-  //     id: user.id, 
-  //     email: user.email || email,
-  //   },
-  //   omit : {
-  //     password: true,
-  //   }
-  // })
+    user: await prisma.user.findUniqueOrThrow({
+    where: {
+      id: user.id, 
+      email: user.email || email,
+    },
+    omit : {
+      password: true,
+    }
+  })
   }
-
-
-
-  // const userData = {
-  //   accessToken,
-  //   refreshToken,
-  //   user: {
-  //     result
-  //   }
-  // }
 
 }
 
@@ -129,12 +127,13 @@ const refreshToken = async (refreshToken: string) => {
   }
 
   const {id, email} = verifiedRefreshToken.data as JwtPayload;
+  const normalizedEmail = typeof email === "string" ? normalizeEmail(email) : email;
 
 
   const user = await prisma.user.findUniqueOrThrow({
     where: {
       id: id,
-      email: email,
+      email: normalizedEmail,
     }
   })
 
@@ -166,8 +165,30 @@ const refreshToken = async (refreshToken: string) => {
 
 
 
+const getUserProfileFromDB = async (userId: string) => {
+  const user = await prisma.user.findUniqueOrThrow
+  ({
+    where: {
+      id: userId,
+    },
+    omit : {
+      password: true,
+    }
+  });
+
+
+  if(!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+}
+
+
+
 export const authService = {
     registerUserIntoDB,
     loginUserFromDB,
-    refreshToken
+    refreshToken,
+    getUserProfileFromDB,
 } 

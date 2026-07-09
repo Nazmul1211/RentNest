@@ -60,7 +60,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
 
 const refreshToken = catchAsync(async (req: Request, res: Response) => {
-  const { refreshToken } = req.cookies.RefreshToken;
+  const refreshToken = req.cookies?.RefreshToken;
   if (!refreshToken) {
     throw new Error("Refresh token is required");
   }
@@ -86,8 +86,30 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const getMyProfile = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+
+  if(!user) {
+    throw new Error("User not found");
+  }
+
+  const userProfile = await authService.getUserProfileFromDB(user.id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpsStatus.OK,
+    message: "User profile fetched successfully",
+    data: userProfile,
+  })
+
+});
+
+
+
+
 export const authController = {
   registerUser,
   loginUser,
-  refreshToken
+  refreshToken,
+  getMyProfile,
 };

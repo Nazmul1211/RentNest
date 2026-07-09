@@ -4,9 +4,12 @@ model User {
   email     String     @unique
   password  String
   phone     String?
-  avatarUrl String?
+  profilePhoto String?
   role      UserRole
   status    UserStatus @default(ACTIVE)
+
+  stripeCustomerId    String? @unique
+  hasCompletedPayment Boolean @default(false)
 
   properties    Property[]
   payment       Payment[]
@@ -17,4 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@map("users")
+
+  @@index([role])
+  @@index([status])
 }

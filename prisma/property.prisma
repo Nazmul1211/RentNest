@@ -1,12 +1,41 @@
 model Property {
   id String @id @default(uuid())
 
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  category       Category?       @relation(fields: [categoryId], references: [id])
-  categoryId     String?
+  landlordId      String
+  categoryId      String
+  title           String
+  slug            String         @unique
+  description     String
+  rentAmount      Decimal        @db.Decimal(12, 2)
+  securityDeposit Decimal?       @db.Decimal(12, 2)
+  address         String
+  city            String
+  area            String?
+  country         String         @default("Bangladesh")
+  postalCode      String?
+  bedrooms        Int?
+  bathrooms       Int?
+  sizeSqft        Decimal?       @db.Decimal(10, 2)
+  images          String[]       @default([])
+  amenities       String[]       @default([])
+  status          PropertyStatus @default(PUBLISHED)
+  isAvailable     Boolean        @default(true)
+  availableFrom   DateTime?
+
   rentalRequests RentalRequest[]
   reviews        Review[]
-  user           User?           @relation(fields: [userId], references: [id])
+
+  landlord           User?           @relation(fields: [userId], references: [id])
+  category       Category?       @relation(fields: [categoryId], references: [id])
+
   userId         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([landlordId])
+  @@index([categoryId])
+  @@index([city])
+  @@index([rentAmount])
+  @@index([status, isAvailable])
 }

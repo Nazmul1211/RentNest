@@ -6,7 +6,6 @@ import { landlordController } from "./controller.landlord.js";
 const router = Router();
 
 router.post("/properties", auth(UserRole.LANDLORD), landlordController.createProperties);
-
-
+router.patch("/properties/:id", auth(UserRole.LANDLORD), landlordController.updateProperties);
 
 export const landlordRoutes = router;

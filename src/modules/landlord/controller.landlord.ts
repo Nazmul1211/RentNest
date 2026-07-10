@@ -4,7 +4,6 @@ import { sendResponse } from "../../utils/sendResponse.js";
 import httpsStatus from "http-status";
 import { lanlordService } from "./service.landlord.js";
 import type { UserRole } from "../../../generated/prisma/enums.js";
-import { propertyService } from "../properties/service.properties.js";
 
 const createProperties = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -59,9 +58,52 @@ const updateProperties = catchAsync(
   )
 
 
+  const getAllRentalRequestsForProperties = catchAsync(
+    async(req: Request, res: Response, next: NextFunction) => {
+        const userId = req.user?.id;
+
+        console.log("landLord All Rental Request Get methods hits");
+
+        const propertiesWithRentalRequests = await lanlordService.getPropertiesRentalRequestsFromDB(userId as string)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpsStatus.OK,
+        message: "Retrieved all rental requests for landlord's properties successfully!",
+        data: propertiesWithRentalRequests
+    })
+
+    return null;
+
+    }
+
+  )
+
+
+  const approveOrRejectRentalRequest = catchAsync(
+    async(req: Request, res: Response, next: NextFunction) => {
+
+        const requestId = req.params?.id;
+        const landlordId = req.user?.id;
+        const payload = req.body;
+        
+        console.log("landLord Approve or Reject Rental Request Api hitted");
+
+        const landlordConcent = await lanlordService.approveOrRejectRentalRequestInDB(requestId as string, landlordId as string, payload);
+
+        sendResponse(res, {
+            success: true,
+            statusCode: httpsStatus.OK,
+            message: "Rental Request Approved or Rejected Successfully!",
+            data: landlordConcent
+        })
+    }
+  )
 
 export const landlordController = {
   createProperties,
   updateProperties,
   deleteProperties,
+  getAllRentalRequestsForProperties,
+  approveOrRejectRentalRequest,
 };

@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/landloard", landlordRoutes);
+app.use("/api/landlord", landlordRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/rentals", rentalRoutes);
 

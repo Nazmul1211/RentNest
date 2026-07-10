@@ -1,4 +1,3 @@
-import type { ifError } from "assert/strict";
 import { prisma } from "../../lib/prisma.js";
 import type { IPropertyPayload } from "./interface.landlord.js";
 
@@ -145,9 +144,102 @@ const deletePropertyInDB = async (
   }
 };
 
+const getPropertiesRentalRequestsFromDB = async (landlordId: string) => {
+  const rentalRequests = await prisma.rentalRequest.findMany({
+    where: {
+      properties: {
+        landlordId: landlordId,
+      },
+    },
+    include: {
+      tenant: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+        },
+      },
+      properties: {
+        select: {
+          id: true,
+          title: true,
+          rentAmount: true,
+          city: true,
+          area: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return rentalRequests;
+};
+
+
+const approveOrRejectRentalRequestInDB = async(
+    requestId: string,
+    landlordId: string,
+    payload: { status: string; landlordNote?: string }
+) => {
+    if (!payload.status || !["APPROVED", "REJECTED"].includes(payload.status)) {
+        throw new Error("Status must be either 'APPROVED' or 'REJECTED'.");
+    }
+
+    const rentalRequest = await prisma.rentalRequest.findUnique({
+        where: {
+            id: requestId,
+        },
+        include : {
+            properties: {
+                select: {
+                    landlordId : true
+                }
+            }
+        }
+    });
+
+
+    if (!rentalRequest) {
+        throw new Error("Rental request not found.");
+    }
+
+    if (rentalRequest.properties.landlordId !== landlordId) {
+        throw new Error("Forbidden: You are not authorized to modify this rental request.");
+    }
+
+    if (rentalRequest.status !== "PENDING") {
+        throw new Error(`Cannot Proceed this request. Current rental request status is already ${rentalRequest.status}.`);
+    }
+
+    const updateData: Record<string, any> = {
+        status: payload.status,
+        landlordNote: payload.landlordNote ?? null,
+    };
+
+    if (payload.status === "APPROVED") {
+        updateData.approvedAt = new Date();
+    } else {
+        updateData.rejectedAt = new Date();
+    }
+
+    const updatedRentalRequest = await prisma.rentalRequest.update({
+        where: { 
+            id: requestId 
+        },
+        data: updateData,
+    });
+
+    return updatedRentalRequest;
+}
+
+
 export const lanlordService = {
   createPropertyInDB,
   updatePropertyInDB,
   deletePropertyInDB,
-  getPropertiesWithRentalRequestsFromDB
+  getPropertiesRentalRequestsFromDB,
+  approveOrRejectRentalRequestInDB
 };

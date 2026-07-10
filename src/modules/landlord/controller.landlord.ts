@@ -4,6 +4,7 @@ import { sendResponse } from "../../utils/sendResponse.js";
 import httpsStatus from "http-status";
 import { lanlordService } from "./service.landlord.js";
 import type { UserRole } from "../../../generated/prisma/enums.js";
+import { propertyService } from "../properties/service.properties.js";
 
 const createProperties = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -27,13 +28,7 @@ const updateProperties = catchAsync(
     const userId = req.user?.id;
     const userRole = req.user?.role;
 
-    console.log("update property", updatedPayload,
-        propertyId, userId, userRole
-    )
-
     const propertyUpdateResult = await lanlordService.updatePropertyInDB(updatedPayload, propertyId as string, userId as string, userRole as UserRole);
-
-    // const propertyUpdateResult = "";
   
 
     sendResponse(res, {
@@ -44,7 +39,27 @@ const updateProperties = catchAsync(
     });
   });
 
+
+  const deleteProperties = catchAsync(
+    async(req: Request, res: Response, next: NextFunction) => {
+    const propertyId = req.params.id;
+    const userId = req.user?.id;
+    const userRole = req.user?.role;
+
+    await lanlordService.deletePropertyInDB(propertyId as string, userId as string, userRole as UserRole);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpsStatus.OK,
+        message: "Property Deleted Successfully!",
+        data: null
+    })
+
+    }
+  )
+
 export const landlordController = {
   createProperties,
-  updateProperties
+  updateProperties,
+  deleteProperties,
 };

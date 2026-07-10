@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import { categoryRoutes } from "./modules/categories/route.categories.js";
 import { landlordRoutes } from "./modules/landlord/route.landlord.js";
 import { propertyRoutes } from "./modules/properties/route.properties.js";
+import { rentalRoutes } from "./modules/rentalRequest/route.rental.js";
 
 const app: Application = express();
 
@@ -27,6 +28,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/landloard", landlordRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/rentals", rentalRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

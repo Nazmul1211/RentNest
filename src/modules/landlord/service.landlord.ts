@@ -149,4 +149,5 @@ export const lanlordService = {
   createPropertyInDB,
   updatePropertyInDB,
   deletePropertyInDB,
+  getPropertiesWithRentalRequestsFromDB
 };

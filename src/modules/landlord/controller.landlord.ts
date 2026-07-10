@@ -58,6 +58,8 @@ const updateProperties = catchAsync(
     }
   )
 
+
+
 export const landlordController = {
   createProperties,
   updateProperties,

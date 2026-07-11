@@ -10,6 +10,8 @@ import { landlordRoutes } from "./modules/landlord/route.landlord.js";
 import { propertyRoutes } from "./modules/properties/route.properties.js";
 import { rentalRoutes } from "./modules/rentalRequest/route.rental.js";
 import { adminRoutes } from "./modules/admin/route.admin.js";
+import { paymentRoutes } from "./modules/payment/route.payment.js";
+import { paymentController } from "./modules/payment/controller.payment.js";
 
 const app: Application = express();
 
@@ -19,6 +21,14 @@ app.use(
     credentials: true,
   }),
 );
+
+
+app.post(
+  '/api/payments/confirm',
+  express.raw({ type: '*/*' }),
+  paymentController.confirmPayment
+);
+
 
 // added middleware to parse JSON and URL-encoded data 
 app.use(express.json());
@@ -31,6 +41,7 @@ app.use("/api/landlord", landlordRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/rentals", rentalRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/payments", paymentRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

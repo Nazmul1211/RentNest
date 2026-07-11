@@ -12,5 +12,6 @@ router.post("/login", authController.loginUser);
 
 router.get("/me", auth(UserRole.TENANT, UserRole.LANDLORD, UserRole.ADMIN), authController.getMyProfile);
 
+router.post("/logout", auth(UserRole.TENANT, UserRole.LANDLORD, UserRole.ADMIN), authController.logoutUser);
 
 export const authRoutes = router;  

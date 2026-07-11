@@ -165,6 +165,12 @@ const refreshToken = async (refreshToken: string) => {
 
 
 
+const logoutUser = async () => {
+  return { message: "Logged out successfully" };
+}
+
+
+
 const getUserProfileFromDB = async (userId: string) => {
   const user = await prisma.user.findUniqueOrThrow
   ({
@@ -190,5 +196,6 @@ export const authService = {
     registerUserIntoDB,
     loginUserFromDB,
     refreshToken,
+    logoutUser,
     getUserProfileFromDB,
 } 

@@ -86,6 +86,32 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const logoutUser = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+  const result = await authService.logoutUser();
+
+  res.clearCookie("AccessToken", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "none",
+  });
+
+  res.clearCookie("RefreshToken", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "none",
+  });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpsStatus.OK,
+    message: "User logged out successfully",
+    data: result,
+  });
+});
+
+
+
 const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const user = req.user;
 
@@ -110,6 +136,7 @@ const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFu
 export const authController = {
   registerUser,
   loginUser,
+  logoutUser,
   refreshToken,
   getMyProfile,
 };

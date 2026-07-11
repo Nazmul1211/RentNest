@@ -11,7 +11,7 @@ import { propertyRoutes } from "./modules/properties/route.properties.js";
 import { rentalRoutes } from "./modules/rentalRequest/route.rental.js";
 import { adminRoutes } from "./modules/admin/route.admin.js";
 import { paymentRoutes } from "./modules/payment/route.payment.js";
-import { paymentController } from "./modules/payment/controller.payment.js";
+
 
 const app: Application = express();
 
@@ -23,10 +23,15 @@ app.use(
 );
 
 
-app.post(
+// app.post(
+//   '/api/payments/confirm',
+//   express.raw({ type: '*/*' }),
+//   paymentController.confirmPayment
+// );
+
+app.use(
   '/api/payments/confirm',
-  express.raw({ type: '*/*' }),
-  paymentController.confirmPayment
+  express.raw({ type: "application/json" }),
 );
 
 
@@ -42,6 +47,7 @@ app.use("/api/properties", propertyRoutes);
 app.use("/api/rentals", rentalRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/payments", paymentRoutes);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

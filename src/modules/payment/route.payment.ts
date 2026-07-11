@@ -12,6 +12,11 @@ router.post(
   paymentController.createCheckoutSession
 );
 
+router.post(
+  "/confirm",
+  paymentController.confirmPayment
+);
+
 router.get(
   '/',
   auth(UserRole.TENANT, UserRole.ADMIN),
@@ -23,4 +28,6 @@ router.get(
   auth(UserRole.TENANT, UserRole.ADMIN),
   paymentController.getSinglePayment
 );
+
+
 export const paymentRoutes = router;

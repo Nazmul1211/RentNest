@@ -5,6 +5,7 @@ import { prisma } from "../../lib/prisma.js";
 
 const stripe = new Stripe((config.stripe_secret_key as string).trim());
 
+
 const createCheckoutSessionInDB = async (
   userId: string,
   rentalRequestId: string,
@@ -111,6 +112,8 @@ const createCheckoutSessionInDB = async (
   };
 };
 
+
+
 const handlePaymentConfirmation = async (
   payload: Buffer,
   signature: string,
@@ -189,7 +192,90 @@ const handlePaymentConfirmation = async (
   };
 };
 
+
+
+
+const getPaymentsFromDB = async (userId: string, role: string) => {
+
+  const whereClause =
+    role === "ADMIN" ? {} : { payerId: userId };
+
+  const payments = await prisma.payment.findMany({
+    where: whereClause,
+    include: {
+      payer: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+      payment: {
+        select: {
+          id: true,
+          status: true,
+          monthlyRent: true,
+          properties: {
+            select: {
+              id: true,
+              title: true,
+              city: true,
+            },
+          },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return payments;
+};
+
+
+
+
+const getSinglePaymentFromDB = async (paymentId: string, userId: string, role: string) => {
+  const whereClause =
+    role === "ADMIN"
+      ? { id: paymentId }
+      : { id: paymentId, payerId: userId };
+
+  const payment = await prisma.payment.findUniqueOrThrow({
+    where: whereClause,
+    include: {
+      payer: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+      payment: {
+        select: {
+          id: true,
+          status: true,
+          monthlyRent: true,
+          properties: {
+            select: {
+              id: true,
+              title: true,
+              city: true,
+              address: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  return payment;
+};
+
 export const paymentService = {
   createCheckoutSessionInDB,
   handlePaymentConfirmation,
+  getPaymentsFromDB,
+  getSinglePaymentFromDB,
 };

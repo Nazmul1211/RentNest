@@ -5,10 +5,28 @@ const createRentalRequestInDB = async (
   payload: IRentalRequestPayload,
   userId: string,
 ) => {
+
+  const { propertyId, moveInDate, moveOutDate, totalMonths, tenantMessage, monthlyRent, totalAmount } = payload;
+
+  const property = await prisma.property.findUniqueOrThrow({
+    where: {
+      id: propertyId
+    },
+  });
+
+  const calculatedMonthlyRent = monthlyRent ?? Number(property.rentAmount);
+  const calculatedTotalAmount = totalAmount ?? (calculatedMonthlyRent * (totalMonths ?? 1));
+
   const createRequest = await prisma.rentalRequest.create({
     data: {
-      ...payload,
+      propertyId,
       tenantId: userId,
+      moveInDate,
+      moveOutDate,
+      totalMonths,
+      tenantMessage,
+      monthlyRent: calculatedMonthlyRent,
+      totalAmount: calculatedTotalAmount,
     },
   });
 

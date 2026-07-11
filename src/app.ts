@@ -11,6 +11,7 @@ import { propertyRoutes } from "./modules/properties/route.properties.js";
 import { rentalRoutes } from "./modules/rentalRequest/route.rental.js";
 import { adminRoutes } from "./modules/admin/route.admin.js";
 import { paymentRoutes } from "./modules/payment/route.payment.js";
+import { reviewRoutes } from "./modules/review/route.review.js";
 
 
 const app: Application = express();
@@ -47,7 +48,7 @@ app.use("/api/properties", propertyRoutes);
 app.use("/api/rentals", rentalRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/payments", paymentRoutes);
-
+app.use("/api/reviews", reviewRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");

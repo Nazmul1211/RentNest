@@ -3,3 +3,6 @@ dist
 generated
 .env*
 /generated/prisma
+.vercel
+.DS_Store
+*.DS_Store

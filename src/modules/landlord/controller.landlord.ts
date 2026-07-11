@@ -9,7 +9,7 @@ const createProperties = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.user?.id;
 
-    const property = await lanlordService.createPropertyInDB(userId, req.body);
+    const property = await lanlordService.createPropertyInDB(userId as string, req.body);
 
     sendResponse(res, {
       success: true,

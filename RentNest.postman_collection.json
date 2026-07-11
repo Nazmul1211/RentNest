@@ -24,12 +24,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/auth/login",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/auth/login",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "auth",
@@ -55,12 +56,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/auth/register",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/auth/register",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "auth",
@@ -84,12 +86,13 @@
               "raw": ""
             },
             "url": {
-              "raw": "http://localhost:4000/api/auth/me",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/auth/me",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "auth",
@@ -115,12 +118,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/auth/logout",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/auth/logout",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "auth",
@@ -149,12 +153,13 @@
               "raw": ""
             },
             "url": {
-              "raw": "http://localhost:4000/api/properties?city=Dhaka",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/properties?city=Dhaka",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "properties"
@@ -224,12 +229,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:4000/api/properties/:id",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/properties/:id",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "properties",
@@ -264,12 +270,13 @@
               "raw": ""
             },
             "url": {
-              "raw": "http://localhost:4000/api/categories",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/categories",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "categories"
@@ -294,12 +301,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/categories",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/categories",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "categories"
@@ -329,12 +337,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/landlord/properties",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "landlord",
@@ -360,12 +369,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/landlord/properties/ff39d4e1-98ed-421a-bc3e-8411337d79a8",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties/ff39d4e1-98ed-421a-bc3e-8411337d79a8",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "landlord",
@@ -383,12 +393,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:4000/api/landlord/properties/b28f71eb-5cdd-43ed-bb92-b95dae2ec7f7",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties/b28f71eb-5cdd-43ed-bb92-b95dae2ec7f7",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "landlord",
@@ -413,12 +424,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/landlord/requests",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/requests",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "landlord",
@@ -444,12 +456,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/landlord/requests/b7d7147f-b471-41fd-9dc2-5c46051e69fe",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/requests/b7d7147f-b471-41fd-9dc2-5c46051e69fe",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "landlord",
@@ -481,12 +494,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/rentals",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/rentals",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "rentals"
@@ -509,12 +523,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/rentals",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/rentals",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "rentals"
@@ -537,12 +552,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/rentals/2d249101-9162-4aaf-84b3-d08a561e188a",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/rentals/2d249101-9162-4aaf-84b3-d08a561e188a",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "rentals",
@@ -571,12 +587,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/admin/users",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/admin/users",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "admin",
@@ -602,12 +619,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/admin/users/6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/admin/users/6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "admin",
@@ -632,12 +650,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/admin/rentals",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/admin/rentals",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "admin",
@@ -661,12 +680,13 @@
               "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
             },
             "url": {
-              "raw": "http://localhost:4000/api/admin/properties",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/admin/properties",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "admin",
@@ -714,12 +734,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/payments/create",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/payments/create",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "payments",
@@ -746,12 +767,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:4000/api/payments",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/payments",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "payments"
@@ -777,12 +799,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:4000/api/payments/:id",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/payments/:id",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "payments",
@@ -836,12 +859,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/reviews",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/reviews",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "reviews"
@@ -881,12 +905,13 @@
               "raw": "{\n  \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",\n  \"rating\": 4,\n  \"comment\": \"Great place to live!\"\n}\n"
             },
             "url": {
-              "raw": "http://localhost:4000/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "reviews",
@@ -929,12 +954,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:4000/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "reviews",
@@ -975,12 +1001,13 @@
               "raw": "{\n  \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",\n  \"rating\": 4,\n  \"comment\": \"Great place to live!\"\n}\n"
             },
             "url": {
-              "raw": "http://localhost:4000/api/reviews",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/reviews",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "reviews"
@@ -1006,12 +1033,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:4000/api/reviews/:id",
-              "protocol": "http",
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/:id",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "rent-nest-two",
+                "vercel",
+                "app"
               ],
-              "port": "4000",
               "path": [
                 "api",
                 "reviews",

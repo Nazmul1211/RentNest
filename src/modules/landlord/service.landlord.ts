@@ -35,18 +35,18 @@ const createPropertyInDB = async (
       title,
       description,
       rentAmount,
-      securityDeposit,
+      securityDeposit: securityDeposit ?? null,
       address,
       city,
-      area,
+      area: area ?? null,
       country,
-      postalCode,
-      bedrooms,
-      bathrooms,
-      sizeSqft,
+      postalCode: postalCode ?? null,
+      bedrooms: bedrooms ?? null,
+      bathrooms: bathrooms ?? null,
+      sizeSqft: sizeSqft ?? null,
       images,
       amenities,
-      availableFrom,
+      availableFrom: availableFrom ?? null,
       slug,
       landlordId: userId,
     },
@@ -179,60 +179,60 @@ const getPropertiesRentalRequestsFromDB = async (landlordId: string) => {
 };
 
 
-const approveOrRejectRentalRequestInDB = async(
-    requestId: string,
-    landlordId: string,
-    payload: { status: string; landlordNote?: string }
+const approveOrRejectRentalRequestInDB = async (
+  requestId: string,
+  landlordId: string,
+  payload: { status: string; landlordNote?: string }
 ) => {
-    if (!payload.status || !["APPROVED", "REJECTED"].includes(payload.status)) {
-        throw new Error("Status must be either 'APPROVED' or 'REJECTED'.");
-    }
+  if (!payload.status || !["APPROVED", "REJECTED"].includes(payload.status)) {
+    throw new Error("Status must be either 'APPROVED' or 'REJECTED'.");
+  }
 
-    const rentalRequest = await prisma.rentalRequest.findUnique({
-        where: {
-            id: requestId,
-        },
-        include : {
-            properties: {
-                select: {
-                    landlordId : true
-                }
-            }
+  const rentalRequest = await prisma.rentalRequest.findUnique({
+    where: {
+      id: requestId,
+    },
+    include: {
+      properties: {
+        select: {
+          landlordId: true
         }
-    });
-
-
-    if (!rentalRequest) {
-        throw new Error("Rental request not found.");
+      }
     }
+  });
 
-    if (rentalRequest.properties.landlordId !== landlordId) {
-        throw new Error("Forbidden: You are not authorized to modify this rental request.");
-    }
 
-    if (rentalRequest.status !== "PENDING") {
-        throw new Error(`Cannot Proceed this request. Current rental request status is already ${rentalRequest.status}.`);
-    }
+  if (!rentalRequest) {
+    throw new Error("Rental request not found.");
+  }
 
-    const updateData: Record<string, any> = {
-        status: payload.status,
-        landlordNote: payload.landlordNote ?? null,
-    };
+  if (rentalRequest.properties.landlordId !== landlordId) {
+    throw new Error("Forbidden: You are not authorized to modify this rental request.");
+  }
 
-    if (payload.status === "APPROVED") {
-        updateData.approvedAt = new Date();
-    } else {
-        updateData.rejectedAt = new Date();
-    }
+  if (rentalRequest.status !== "PENDING") {
+    throw new Error(`Cannot Proceed this request. Current rental request status is already ${rentalRequest.status}.`);
+  }
 
-    const updatedRentalRequest = await prisma.rentalRequest.update({
-        where: { 
-            id: requestId 
-        },
-        data: updateData,
-    });
+  const updateData: Record<string, any> = {
+    status: payload.status,
+    landlordNote: payload.landlordNote ?? null,
+  };
 
-    return updatedRentalRequest;
+  if (payload.status === "APPROVED") {
+    updateData.approvedAt = new Date();
+  } else {
+    updateData.rejectedAt = new Date();
+  }
+
+  const updatedRentalRequest = await prisma.rentalRequest.update({
+    where: {
+      id: requestId
+    },
+    data: updateData,
+  });
+
+  return updatedRentalRequest;
 }
 
 

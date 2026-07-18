@@ -11,6 +11,7 @@ const createRentalRequest = catchAsync(
 
         const payload = req.body;
         const userId = req.user?.id;
+        console.log(userId);
 
         const rentalRequest = await rentalRequestService.createRentalRequestInDB(payload, userId as string);
 

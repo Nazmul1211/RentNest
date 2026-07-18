@@ -63,7 +63,14 @@ const createRentalRequestInDB = async (
   return createRequest;
 };
 
+
+
 const getRentalReqeustsFromDB = async (userId: string) => {
+
+  if(!userId) {
+    throw new Error("User Not Found");
+  }
+
   const getAllRentalRequests = await prisma.rentalRequest.findMany({
     where: {
       tenantId: userId,
@@ -73,19 +80,34 @@ const getRentalReqeustsFromDB = async (userId: string) => {
   return getAllRentalRequests;
 };
 
+
+
 const getRentalReqeustByIdFromDB = async (
   requestId: string,
   userId: string,
 ) => {
+  if (!userId) {
+    throw new Error("User Not Found");
+  }
+
+  if (!requestId) {
+    throw new Error("Rental request id is required");
+  }
+
   const getRentalRequestById = await prisma.rentalRequest.findUniqueOrThrow({
     where: {
-      tenantId: userId,
       id: requestId,
     },
   });
 
+  if (getRentalRequestById.tenantId !== userId) {
+    throw new Error("Forbidden: You are not authorized to access this rental request.");
+  }
+
   return getRentalRequestById;
 };
+
+
 
 export const rentalRequestService = {
   createRentalRequestInDB,

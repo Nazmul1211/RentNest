@@ -55,41 +55,22 @@ const createPropertyInDB = async (
   return property;
 };
 
+
+
 const updatePropertyInDB = async (
   payload: IPropertyPayload,
   propertyId: string,
   landlordId: string,
   role: string,
 ) => {
-  const {
-    categoryId,
-    title,
-    description,
-    rentAmount,
-    securityDeposit,
-    address,
-    city,
-    area,
-    country,
-    postalCode,
-    bedrooms,
-    bathrooms,
-    sizeSqft,
-    images,
-    amenities,
-    availableFrom,
-    slug,
-  } = payload;
-
   if (payload && propertyId && landlordId && role) {
     const property = await prisma.property.findUniqueOrThrow({
       where: {
         id: propertyId,
-        landlordId: landlordId,
       },
     });
 
-    if (landlordId !== property.landlordId) {
+    if (role !== "ADMIN" && landlordId !== property.landlordId) {
       throw new Error(
         "Forbidded: You are not authorized to update the property!",
       );
@@ -105,6 +86,8 @@ const updatePropertyInDB = async (
     return updatedProperty;
   }
 };
+
+
 
 const deletePropertyInDB = async (
   propertyId: string,
@@ -144,6 +127,9 @@ const deletePropertyInDB = async (
   }
 };
 
+
+
+
 const getPropertiesRentalRequestsFromDB = async (landlordId: string) => {
   const rentalRequests = await prisma.rentalRequest.findMany({
     where: {
@@ -177,6 +163,7 @@ const getPropertiesRentalRequestsFromDB = async (landlordId: string) => {
 
   return rentalRequests;
 };
+
 
 
 const approveOrRejectRentalRequestInDB = async (

@@ -3,11 +3,10 @@ import type { NextFunction, Request, Response } from "express";
 import { propertyService } from "./service.properties.js";
 import { sendResponse } from "../../utils/sendResponse.js";
 import httpsStatus from "http-status";
-import type { IPropertyQuery } from "./interface.properties.js";
 
 const getProperties = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const filters = req.query as IPropertyQuery;
+        const filters = req.query;
 
         // console.log(filters, "filters in controller");
 

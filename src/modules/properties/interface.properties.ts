@@ -4,7 +4,6 @@ export interface IPropertyQuery {
   price?: number;
   minprice?: string;
   maxprice?: string;
-  area?: string;
   address?: string;
   location?: string;
   categoryId?: string;

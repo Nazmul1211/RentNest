@@ -7,6 +7,12 @@ import { reviewController } from "./controller.review.js";
 const router = Router();
 
 
+router.post(
+    "/",
+    auth(UserRole.TENANT),
+    reviewController.createReview,
+);
+
 router.get(
     "/",
     reviewController.getReviews,
@@ -17,19 +23,11 @@ router.get(
     reviewController.getSingleReview,
 );
 
-router.post(
-    "/",
-    auth(UserRole.TENANT),
-    reviewController.createReview,
-);
-
 router.patch(
     "/:id",
     auth(UserRole.TENANT),
     reviewController.updateReview,
 );
-
-
 
 router.delete(
     "/:id",

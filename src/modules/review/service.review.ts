@@ -6,6 +6,14 @@ import type { ICreateReviewPayload, IUpdateReviewPayload } from "./interface.rev
 const createReviewInDB = async (payload: ICreateReviewPayload, tenantId: string) => {
     const { rentalRequestId, rating, comment } = payload;
 
+    if(!rentalRequestId || !rating || !comment){
+        throw new Error("rentalRequestId, rating or comment are missing!");
+    }
+
+    if(!tenantId){
+        throw new Error("Tenant Id is required!");
+    }
+
     const rentalRequest = await prisma.rentalRequest.findFirst({
         where: {
             id: rentalRequestId,
@@ -21,7 +29,10 @@ const createReviewInDB = async (payload: ICreateReviewPayload, tenantId: string)
     }
 
     const existingReview = await prisma.review.findFirst({
-        where: { rentalRequestId, tenantId },
+        where: { 
+            rentalRequestId, 
+            tenantId 
+        },
     });
 
     if (existingReview) {
@@ -62,8 +73,14 @@ const createReviewInDB = async (payload: ICreateReviewPayload, tenantId: string)
 
 
 const getReviewsFromDB = async (role?: string) => {
+    
+    const whereClause = 
+           role === "ADMIN" 
+            ? {} 
+            : { status: ReviewStatus.PUBLISHED };
+
     const reviews = await prisma.review.findMany({
-        where: role === "ADMIN" ? {} : { status: ReviewStatus.PUBLISHED },
+        where: whereClause,
         include: {
             tenant: {
                 select:
@@ -130,6 +147,11 @@ const getSingleReviewFromDB = async (reviewId: string) => {
 
 
 const updateReviewInDB = async (reviewId: string, payload: IUpdateReviewPayload, tenantId: string) => {
+
+    if(!reviewId || !tenantId || !payload){
+        throw new Error("reviewId or tenantId or payload are missing!");
+    }
+
     const review = await prisma.review.findFirst({
         where: {
             id: reviewId,
@@ -148,15 +170,18 @@ const updateReviewInDB = async (reviewId: string, payload: IUpdateReviewPayload,
         data: payload,
         include: {
             tenant: {
-                select:
-                    { id: true, name: true, email: true }
+                select: { 
+                    id: true, 
+                    name: true, 
+                    email: true 
+                },
             },
             property: {
                 select: {
                     id: true,
                     title: true,
                     city: true
-                }
+                },
             },
         },
     });
@@ -166,7 +191,15 @@ const updateReviewInDB = async (reviewId: string, payload: IUpdateReviewPayload,
 
 
 const deleteReviewFromDB = async (reviewId: string, userId: string, role: string) => {
-    const whereClause = role === "ADMIN" ? { id: reviewId } : { id: reviewId, tenantId: userId };
+
+    if(!reviewId || !userId || !["ADMIN", "TENANT"].includes(role)){
+        throw new Error("reviewId or userId or role are missing!");
+    }
+
+    const whereClause = 
+            role === "ADMIN" 
+               ? { id: reviewId } 
+               : { id: reviewId, tenantId: userId };
 
     const review = await prisma.review.findFirst({
         where: whereClause

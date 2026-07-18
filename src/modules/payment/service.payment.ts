@@ -220,8 +220,10 @@ const handlePaymentConfirmation = async (
 
 const getPaymentsFromDB = async (userId: string, role: string) => {
 
-  const whereClause =
-    role === "ADMIN" ? {} : { payerId: userId };
+  const whereClause = 
+          role === "ADMIN" 
+          ? {} 
+          : { payerId: userId };
 
   const payments = await prisma.payment.findMany({
     where: whereClause,

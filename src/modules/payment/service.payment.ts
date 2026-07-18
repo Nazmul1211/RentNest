@@ -27,6 +27,8 @@ const createCheckoutSessionInDB = async (
     },
   });
 
+  // console.log("Rental Request Data :", rentalRequest);
+
   if (!rentalRequest) {
     throw new Error("Approved rental request not found");
   }
@@ -39,8 +41,10 @@ const createCheckoutSessionInDB = async (
     throw new Error("This rental request is already paid");
   }
 
+  // check stripe customer id exists or not
   let stripeCustomerId = rentalRequest.tenant.stripeCustomerId;
 
+  // if customer id not found , create a customer id
   if (!stripeCustomerId) {
     const customer = await stripe.customers.create({
       email: rentalRequest.tenant.email,
@@ -53,6 +57,7 @@ const createCheckoutSessionInDB = async (
     stripeCustomerId = customer.id;
   }
 
+
   const amount = Number(rentalRequest.monthlyRent);
 
   const payment = await prisma.payment.create({
@@ -60,11 +65,13 @@ const createCheckoutSessionInDB = async (
       rentalRequestId: rentalRequest.id,
       payerId: userId,
       amount,
-      currency: "usd",
+      currency: "bdt",
       status: PaymentStatus.PENDING,
       stripeCustomerId,
     },
   });
+
+
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -73,7 +80,7 @@ const createCheckoutSessionInDB = async (
     line_items: [
       {
         price_data: {
-          currency: "usd",
+          currency: "bdt",
           product_data: {
             name: rentalRequest.properties.title,
             description: `Rent payment for ${rentalRequest.properties.city}`,
@@ -93,6 +100,8 @@ const createCheckoutSessionInDB = async (
     cancel_url: `${config.appUrl}/payment/cancel`,
   });
 
+
+
   await prisma.payment.update({
     where: {
       id: payment.id,
@@ -102,15 +111,19 @@ const createCheckoutSessionInDB = async (
     },
   });
 
+
+
   return {
     paymentId: payment.id,
     checkoutUrl: session.url,
     stripeCheckoutSessionId: session.id,
     amount,
-    currency: "usd",
+    currency: "bdt",
     status: PaymentStatus.PENDING,
   };
 };
+
+
 
 
 
@@ -127,6 +140,8 @@ const handlePaymentConfirmation = async (
     signature,
     (config.stripe_webhook_secret as string).trim(),
   );
+
+
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
@@ -154,6 +169,8 @@ const handlePaymentConfirmation = async (
     }
 
     await prisma.$transaction([
+
+      // Update Payment Model
       prisma.payment.update({
         where: {
           id: paymentId,
@@ -166,6 +183,8 @@ const handlePaymentConfirmation = async (
           paidAt: new Date(),
         },
       }),
+
+      // Update rentalRequest Model
       prisma.rentalRequest.update({
         where: {
           id: rentalRequestId,
@@ -175,6 +194,8 @@ const handlePaymentConfirmation = async (
           paidAt: new Date(),
         },
       }),
+
+      // Update User Model
       prisma.user.update({
         where: {
           id: tenantId,
@@ -186,6 +207,8 @@ const handlePaymentConfirmation = async (
       }),
     ]);
   }
+
+
 
   return {
     received: true,
@@ -232,7 +255,6 @@ const getPaymentsFromDB = async (userId: string, role: string) => {
 
   return payments;
 };
-
 
 
 

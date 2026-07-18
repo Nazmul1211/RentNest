@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import type { PropertyWhereInput } from "../../../generated/prisma/models.js";
 import { prisma } from "../../lib/prisma.js";
 import type { IPropertyQuery } from "./interface.properties.js";
@@ -119,6 +120,11 @@ const getPropertiesFromDB = async (query: IPropertyQuery) => {
 };
 
 const getPropertyByIdFromDB = async (id: string) => {
+
+  if(!id){
+    throw new Error("Property not found!");
+  }
+
   const property = await prisma.property.findUniqueOrThrow({
     where: {
       id: id,

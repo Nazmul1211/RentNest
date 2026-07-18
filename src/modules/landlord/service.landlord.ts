@@ -89,7 +89,7 @@ const updatePropertyInDB = async (
 
 
 
-const deletePropertyInDB = async (
+const deletePropertyFromDB = async (
   propertyId: string,
   landlordId: string,
   role: string,
@@ -106,7 +106,6 @@ const deletePropertyInDB = async (
       const property = await prisma.property.findUniqueOrThrow({
         where: {
           id: propertyId,
-          landlordId: landlordId,
         },
       });
 
@@ -226,7 +225,7 @@ const approveOrRejectRentalRequestInDB = async (
 export const lanlordService = {
   createPropertyInDB,
   updatePropertyInDB,
-  deletePropertyInDB,
+  deletePropertyFromDB,
   getPropertiesRentalRequestsFromDB,
   approveOrRejectRentalRequestInDB
 };

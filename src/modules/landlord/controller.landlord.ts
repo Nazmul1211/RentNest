@@ -45,7 +45,7 @@ const updateProperties = catchAsync(
     const userId = req.user?.id;
     const userRole = req.user?.role;
 
-    await lanlordService.deletePropertyInDB(propertyId as string, userId as string, userRole as UserRole);
+    await lanlordService.deletePropertyFromDB(propertyId as string, userId as string, userRole as UserRole);
 
     sendResponse(res, {
         success: true,

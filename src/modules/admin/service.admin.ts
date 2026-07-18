@@ -65,16 +65,14 @@ import type { IUpdateUserStatusPayload } from "./interface.admin.js";
 
     const getAllPropertiesFromDB = async(userId: string, userRole: string) => {
         if (userRole !== "ADMIN") {
-            throw new Error("Unauthorized access");
+            throw new Error("Unauthorized access!");
         }
 
-        const properties = await prisma.property.findMany({
-            where: {
-                landlordId: {
-                    not: userId,
-                },
-            },
-        });
+        if(!userId){
+            throw new Error("Admin Not Found!");
+        }
+
+        const properties = await prisma.property.findMany();
 
         return properties;
     }
@@ -83,6 +81,10 @@ import type { IUpdateUserStatusPayload } from "./interface.admin.js";
     const getAllRentalRequestsFromDB = async(userId: string, userRole: string) => {
         if (userRole !== "ADMIN") {
             throw new Error("Unauthorized access");
+        }
+
+        if(!userId){
+            throw new Error("Admin Not Found!");
         }
 
         const rentalRequests = await prisma.rentalRequest.findMany();

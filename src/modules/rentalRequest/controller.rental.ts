@@ -7,11 +7,11 @@ import { rentalRequestService } from "./service.rental.js"
 
 const createRentalRequest = catchAsync(
     async(req: Request, res: Response, next: NextFunction) => {
-        console.log("Rental Request Creation Api hitted.")
+        // console.log("Rental Request Creation Api hitted.")
 
         const payload = req.body;
         const userId = req.user?.id;
-        console.log(userId);
+        // console.log(userId);
 
         const rentalRequest = await rentalRequestService.createRentalRequestInDB(payload, userId as string);
 

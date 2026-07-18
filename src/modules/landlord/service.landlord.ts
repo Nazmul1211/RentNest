@@ -130,6 +130,11 @@ const deletePropertyFromDB = async (
 
 
 const getPropertiesRentalRequestsFromDB = async (landlordId: string) => {
+
+  if(!landlordId) {
+    throw new Error("Landlord ID is required!");
+  }
+
   const rentalRequests = await prisma.rentalRequest.findMany({
     where: {
       properties: {

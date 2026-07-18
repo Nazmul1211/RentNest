@@ -24,6 +24,11 @@ import type { IUpdateUserStatusPayload } from "./interface.admin.js";
 
 
     const updateUserStatusInDB = async(payload: IUpdateUserStatusPayload, userId: string, adminId: string, userRole: string) => {
+
+        if(!payload || !["ACTIVE", "INACTIVE", "SUSPENDED", "BANNED", "DELETED"].includes(payload.status)){
+            throw new Error("Verified Status Needed");
+        }
+
         if (userRole !== "ADMIN") {
             throw new Error("Unauthorized access");
         } 
@@ -36,6 +41,10 @@ import type { IUpdateUserStatusPayload } from "./interface.admin.js";
 
         if (!user) {
             throw new Error("User not found!");
+        }
+
+        if(user.status === payload.status){
+            throw new Error(`User status already ${payload.status}`);
         }
 
         const updatedUser = await prisma.user.update({

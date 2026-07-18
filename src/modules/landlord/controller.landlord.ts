@@ -62,7 +62,7 @@ const updateProperties = catchAsync(
     async(req: Request, res: Response, next: NextFunction) => {
         const userId = req.user?.id;
 
-        console.log("landLord All Rental Request Get methods hits");
+        // console.log("landLord All Rental Request Get methods hits");
 
         const propertiesWithRentalRequests = await lanlordService.getPropertiesRentalRequestsFromDB(userId as string)
 
@@ -87,7 +87,7 @@ const updateProperties = catchAsync(
         const landlordId = req.user?.id;
         const payload = req.body;
         
-        console.log("landLord Approve or Reject Rental Request Api hitted");
+        // console.log("landLord Approve or Reject Rental Request Api hit");
 
         const landlordConcent = await lanlordService.approveOrRejectRentalRequestInDB(requestId as string, landlordId as string, payload);
 

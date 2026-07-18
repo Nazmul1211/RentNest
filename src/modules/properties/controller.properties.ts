@@ -9,7 +9,7 @@ const getProperties = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const filters = req.query as IPropertyQuery;
 
-        console.log(filters, "filters in controller");
+        // console.log(filters, "filters in controller");
 
         const properties = await propertyService.getPropertiesFromDB(filters);
 

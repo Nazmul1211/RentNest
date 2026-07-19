@@ -56,9 +56,6 @@ enum PaymentMethod {
 
 enum PaymentStatus {
   PENDING
-  PROCESSING
   COMPLETED
   FAILED
-  CANCELLED
-  REFUNDED
 }

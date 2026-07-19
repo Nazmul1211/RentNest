@@ -1,0 +1,1073 @@
+{
+  "info": {
+    "_postman_id": "f458e728-947c-41af-8bef-bbdee6f8be47",
+    "name": "RentNest (Live URL)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28969733",
+    "_collection_link": "https://go.postman.co/collection/28969733-f458e728-947c-41af-8bef-bbdee6f8be47?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/auth/login",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticates a user with email and password and returns a JWT token. Returns user details upon successful login.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/auth/login](https://rent-nest-two.vercel.app/api/auth/login)\n\n**REQUEST BODY**\n\n`{`\n\n`\"email\": \"`[<code>abduljabbar@example.com</code>](https://mailto:abduljabbar@example.com)`\",`\n\n`\"password\": \"password123\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"User logged in successfully\", \"data\": { \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjMTZiMWJjLWM4ODctNGUxYy04MzM3LWMzNTI5NDY0NjdlZSIsImVtYWlsIjoiYWJkdWxqYWJiYXJAZXhhbXBsZS5jb20iLCJuYW1lIjoiQWJkdWwgSmFiYmFyIiwicm9sZSI6IlRFTkFOVCIsInN0YXR1cyI6IkFDVElWRSIsImlhdCI6MTc4NDQyMDQ5MiwiZXhwIjoxNzg0NTA2ODkyfQ.m3lZY8J_UrwH-EfUe9QEWQVTFY5t9SLyiKg-Kfc66O8\", \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjMTZiMWJjLWM4ODctNGUxYy04MzM3LWMzNTI5NDY0NjdlZSIsImVtYWlsIjoiYWJkdWxqYWJiYXJAZXhhbXBsZS5jb20iLCJuYW1lIjoiQWJkdWwgSmFiYmFyIiwicm9sZSI6IlRFTkFOVCIsInN0YXR1cyI6IkFDVElWRSIsImlhdCI6MTc4NDQyMDQ5MiwiZXhwIjoxNzg1MDI1MjkyfQ.fgMKdLYIpVmV5RxBbUgvBQZTKBHpRpuqFSbajyTWxTQ\", \"user\": { \"id\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\", \"name\": \"Abdul Jabbar\", \"email\": \"`[<code>abduljabbar@example.com</code>](https://mailto:abduljabbar@example.com)`\", \"phone\": \"+8801711111111\", \"profilePhoto\": null, \"role\": \"TENANT\", \"status\": \"ACTIVE\", \"stripeCustomerId\": null, \"hasCompletedPayment\": false, \"createdAt\": \"2026-07-09T11:32:12.100Z\", \"updatedAt\": \"2026-07-09T11:32:12.100Z\" } } }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"MR. KARIMULLAH\",\n  \"email\": \"KARIMULLAH@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"+8801711111111\",\n  \"role\": \"LANDLORD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/auth/register",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Registers a new user on the platform. The user must choose a role (TENANT, LANDLORD, or ADMIN) during registration.\n\nREGISTER USER API\n\n[https://rent-nest-two.vercel.app/api/auth/register](https://rent-nest-two.vercel.app/api/auth/register)\n\nREQUEST BODY\n\n{\n\n`\"name\": \"tenant 5\",`\n\n`\"email\": \"`[<code>tenant5@example.com</code>](https://mailto:tenant5@example.com)`\",`\n\n`\"password\": \"password123\",`\n\n`\"phone\": \"+8801712345679\",`\n\n`\"role\": \"TENANT\"`\n\n`}`\n\nREQUEST RESPONSE\n\n`{   \"success\": true,   \"statusCode\": 201,   \"message\": \"User registered successfully\",   \"data\": {   \"user\": {   \"id\": \"cf311709-df63-4b7e-b3ad-ca71a39afc18\",   \"name\": \"tenant 5\",   \"email\": \"`[<code>tenant5@example.com</code>](https://mailto:tenant5@example.com)`\",   \"phone\": \"+8801712345679\",   \"profilePhoto\": null,   \"role\": \"TENANT\",   \"status\": \"ACTIVE\",   \"stripeCustomerId\": null,   \"hasCompletedPayment\": false,   \"createdAt\": \"2026-07-19T10:04:59.904Z\",   \"updatedAt\": \"2026-07-19T10:04:59.904Z\"   }   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/auth/me",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Retrieves the profile of the currently authenticated user. Requires a Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/auth/me](https://rent-nest-two.vercel.app/api/auth/me)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"User profile fetched successfully\",   \"data\": {   \"id\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\",   \"name\": \"Abdul Jabbar\",   \"email\": \"`[<code>abduljabbar@example.com</code>](https://mailto:abduljabbar@example.com)`\",   \"phone\": \"+8801711111111\",   \"profilePhoto\": null,   \"role\": \"TENANT\",   \"status\": \"ACTIVE\",   \"stripeCustomerId\": \"cus_UuXaIkxOSSrxzs\",   \"hasCompletedPayment\": true,   \"createdAt\": \"2026-07-09T11:32:12.100Z\",   \"updatedAt\": \"2026-07-19T00:22:49.391Z\"   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "LogOut User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/auth/logout",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Logs out the currently authenticated user and invalidates the session. Requires a Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/auth/logout](https://rent-nest-two.vercel.app/api/auth/logout)\n\n**REQUEST BODY**\n\n`{}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"User logged out successfully\", \"data\": { \"message\": \"Logged out successfully\" } }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "Get All Properties",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/properties?minprice=30000&maxprice=80000",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "properties"
+              ],
+              "query": [
+                {
+                  "key": "searchTerm",
+                  "value": "dhanmondi",
+                  "description": "SearchTerm => search in title and description of property",
+                  "disabled": true
+                },
+                {
+                  "key": "city",
+                  "value": "Dhaka",
+                  "disabled": true
+                },
+                {
+                  "key": "location",
+                  "value": "Uttara",
+                  "description": "location === area",
+                  "disabled": true
+                },
+                {
+                  "key": "address",
+                  "value": "Dhanmondi",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "price",
+                  "value": "110000",
+                  "disabled": true
+                },
+                {
+                  "key": "minprice",
+                  "value": "30000"
+                },
+                {
+                  "key": "maxprice",
+                  "value": "80000"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "36788eab-f75e-488c-8120-8252fab6c49c",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "3",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "MAX",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieves a paginated list of all available rental properties. Public endpoint — no authentication required. Supports optional query parameters: `searchTerm`, `city`, `location`, `address`, `price`, `minprice`, `maxprice`, `categoryId`, `page`, `limit`.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/properties](https://rent-nest-two.vercel.app/api/properties)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Property retrieved successfully!\",   \"data\": [...{},...]   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/properties/:id",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "properties",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieves the details of a single property by its ID. Public endpoint — no authentication required.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/properties/523c4166-1cf0-4cc5-b42d-fd8ce91220b7](https://rent-nest-two.vercel.app/api/properties/523c4166-1cf0-4cc5-b42d-fd8ce91220b7)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"property retrieved successfully by property id!\",   \"data\": {   \"id\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"landlordId\": \"26d8cc7f-9b13-4fe2-bfda-df8eb2190195\",   \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\",   \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\",   \"slug\": \"elegant-5-bedroom-duplex-house-in-bashundhara-ra\",   \"description\": \"A beautifully designed duplex house with spacious living areas, a landscaped backyard, modern kitchen, and dedicated parking. Perfect for large families seeking comfort and privacy.\",   \"rentAmount\": \"110000\",   \"securityDeposit\": \"220000\",   \"address\": \"House 27, Block F, Bashundhara Residential Area\",   \"city\": \"Dhaka\",   \"area\": \"Bashundhara R/A\",   \"country\": \"Bangladesh\",   \"postalCode\": \"1229\",   \"bedrooms\": 5,   \"bathrooms\": 5,   \"type\": \"UNKNOWN\",   \"sizeSqft\": \"3600\",   \"images\": [   \"`[<code>https://example.com/house-4.jpg\"</code>](https://example.com/house-4.jpg)`,   \"`[<code>https://example.com/house-5.jpg\"</code>](https://example.com/house-5.jpg)`,   \"`[<code>https://example.com/house-6.jpg\"</code>](https://example.com/house-6.jpg)`   ],   \"amenities\": [   \"Private Garage\",   \"Front Lawn\",   \"Backyard\",   \"Rooftop Terrace\",   \"Balcony\",   \"Generator\",   \"24/7 Security\",   \"CCTV\",   \"High-Speed Internet\",   \"Servant Room\"   ],   \"status\": \"PUBLISHED\",   \"isAvailable\": true,   \"availableFrom\": \"2026-09-01T00:00:00.000Z\",   \"userId\": null,   \"createdAt\": \"2026-07-18T15:07:32.199Z\",   \"updatedAt\": \"2026-07-18T15:31:23.879Z\"   }   }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/categories",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "categories"
+              ]
+            },
+            "description": "Retrieves a list of all property categories. Public endpoint — no authentication required.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/categories](https://rent-nest-two.vercel.app/api/categories)\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Categories retrieved successfully\", \"data\": [ { \"id\": \"a2c49963-308b-478c-9f42-262edff5e996\", \"name\": \"Apartment\", \"slug\": \"apartment\", \"description\": \"Residential apartment rental listings\", \"isActive\": true, \"createdAt\": \"2026-07-09T14:04:35.933Z\", \"updatedAt\": \"2026-07-09T14:04:35.933Z\" } ] }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Categories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"penthouse\",\n  \"description\": \"A Premium, luxury apartment\",\n  \"slug\": \"house\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/categories",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "categories"
+              ]
+            },
+            "description": "Creates a new property category. Requires Admin Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/categories](https://rent-nest-two.vercel.app/api/categories)\n\n**REQUEST BODY**\n\n`{`\n\n`\"name\": \"Apartment\",`\n\n`\"description\": \"Residential apartment rental listings\",`\n\n`\"slug\": \"apartment\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 201, \"message\": \"Category created successfully\", \"data\": { \"id\": \"55f0ad3b-fddf-4586-b96d-78eb49c286f9\", \"name\": \"penthouse\", \"slug\": \"house\", \"description\": \"A Premium, luxury apartment\", \"isActive\": true, \"createdAt\": \"2026-07-19T12:18:25.175Z\", \"updatedAt\": \"2026-07-19T12:18:25.175Z\" } }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Landlord",
+      "item": [
+        {
+          "name": "Create Property",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\",\n  \"title\": \"Luxury Penthouse in Gulshan 1\",\n  \"slug\": \"luxury-penthouse-in-gulshan-1\",\n  \"description\": \"Exclusive penthouse featuring a rooftop terrace and panoramic city views.\",\n  \"rentAmount\": 120000,\n  \"securityDeposit\": 240000,\n  \"address\": \"Road 10, Gulshan 1\",\n  \"city\": \"Dhaka\",\n  \"area\": \"Gulshan\",\n  \"country\": \"Bangladesh\",\n  \"postalCode\": \"1212\",\n  \"bedrooms\": 5,\n  \"bathrooms\": 5,\n  \"sizeSqft\": 3200,\n  \"images\": [\n    \"https://example.com/property-21.jpg\",\n    \"https://example.com/property-22.jpg\"\n  ],\n  \"amenities\": [\"WiFi\", \"Lift\", \"Parking\", \"Generator\", \"Security\", \"Gym\", \"Swimming Pool\", \"Rooftop\"],\n  \"availableFrom\": \"2026-09-15T00:00:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "landlord",
+                "properties"
+              ]
+            },
+            "description": "Creates a new rental property listing. Requires a Landlord Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/landlord/properties](https://rent-nest-two.vercel.app/api/landlord/properties)\n\n**REQUEST BODY**\n\n`{`\n\n`\"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\",`\n\n`\"title\": \"Modern 3 Bedroom Apartment in Dhanmondi\",`\n\n`\"description\": \"A spacious apartment...\",`\n\n`\"rentAmount\": 45000,`\n\n`\"securityDeposit\": 90000,`\n\n`\"address\": \"House 12, Road 4, Dhanmondi\",`\n\n`\"city\": \"Dhaka\",`\n\n`\"area\": \"Dhanmondi\",`\n\n`\"country\": \"Bangladesh\",`\n\n`\"postalCode\": \"1205\",`\n\n`\"bedrooms\": 3,`\n\n`\"bathrooms\": 2,`\n\n`\"sizeSqft\": 1400,`\n\n`\"images\": [\"https://example.com/img1.jpg\"],`\n\n`\"amenities\": [\"Parking\", \"Generator\"],`\n\n`\"availableFrom\": \"2026-08-01T00:00:00.000Z\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 201, \"message\": \"Property created successfully\", \"data\": { \"id\": \"976a6056-a5ab-4f90-9657-a036a2a79294\", \"landlordId\": \"26d8cc7f-9b13-4fe2-bfda-df8eb2190195\", \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\", \"title\": \"Luxury Penthouse in Gulshan 1\", \"slug\": \"luxury-penthouse-in-gulshan-1\", \"description\": \"Exclusive penthouse featuring a rooftop terrace and panoramic city views.\", \"rentAmount\": \"120000\", \"securityDeposit\": \"240000\", \"address\": \"Road 10, Gulshan 1\", \"city\": \"Dhaka\", \"area\": \"Gulshan\", \"country\": \"Bangladesh\", \"postalCode\": \"1212\", \"bedrooms\": 5, \"bathrooms\": 5, \"type\": \"UNKNOWN\", \"sizeSqft\": \"3200\", \"images\": [ \"`[<code>https://example.com/property-21.jpg\"</code>](https://example.com/property-21.jpg)`, \"`[<code>https://example.com/property-22.jpg\"</code>](https://example.com/property-22.jpg)`], \"amenities\": [ \"WiFi\", \"Lift\", \"Parking\", \"Generator\", \"Security\", \"Gym\", \"Swimming Pool\", \"Rooftop\" ], \"status\": \"PUBLISHED\", \"isAvailable\": true, \"availableFrom\": \"2026-09-15T00:00:00.000Z\", \"userId\": null, \"createdAt\": \"2026-07-19T00:17:57.815Z\", \"updatedAt\": \"2026-07-19T00:17:57.815Z\" } }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Property",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\",\n  \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\",\n  \"slug\": \"elegant-5-bedroom-duplex-house-in-bashundhara-ra\",\n  \"description\": \"A beautifully designed duplex house with spacious living areas, a landscaped backyard, modern kitchen, and dedicated parking. Perfect for large families seeking comfort and privacy.\",\n  \"rentAmount\": 110000,\n  \"securityDeposit\": 220000,\n  \"address\": \"House 27, Block F, Bashundhara Residential Area\",\n  \"city\": \"Dhaka\",\n  \"area\": \"Bashundhara R/A\",\n  \"country\": \"Bangladesh\",\n  \"postalCode\": \"1229\",\n  \"bedrooms\": 5,\n  \"bathrooms\": 5,\n  \"sizeSqft\": 3600,\n  \"images\": [\n    \"https://example.com/house-4.jpg\",\n    \"https://example.com/house-5.jpg\",\n    \"https://example.com/house-6.jpg\"\n  ],\n  \"amenities\": [\n    \"Private Garage\",\n    \"Front Lawn\",\n    \"Backyard\",\n    \"Rooftop Terrace\",\n    \"Balcony\",\n    \"Generator\",\n    \"24/7 Security\",\n    \"CCTV\",\n    \"High-Speed Internet\",\n    \"Servant Room\"\n  ],\n  \"availableFrom\": \"2026-09-01T00:00:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties/523c4166-1cf0-4cc5-b42d-fd8ce91220b7",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "landlord",
+                "properties",
+                "523c4166-1cf0-4cc5-b42d-fd8ce91220b7"
+              ]
+            },
+            "description": "Updates an existing property listing by its ID. Requires a Landlord or Admin Bearer token.\n\n**PUT API**\n\n[https://rent-nest-two.vercel.app/api/landlord/properties/:propertyId](https://rent-nest-two.vercel.app/api/landlord/properties/523c4166-1cf0-4cc5-b42d-fd8ce91220b7)\n\n**REQUEST BODY**\n\n`{ \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\", \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\", \"slug\": \"elegant-5-bedroom-duplex-house-in-bashundhara-ra\", \"description\": \"A beautifully designed duplex house with spacious living areas, a landscaped backyard, modern kitchen, and dedicated parking. Perfect for large families seeking comfort and privacy.\", \"rentAmount\": 110000, \"securityDeposit\": 220000, \"address\": \"House 27, Block F, Bashundhara Residential Area\", \"city\": \"Dhaka\", \"area\": \"Bashundhara R/A\", \"country\": \"Bangladesh\", \"postalCode\": \"1229\", \"bedrooms\": 5, \"bathrooms\": 5, \"sizeSqft\": 3600, \"images\": [ \"https://example.com/house-4.jpg\", \"https://example.com/house-5.jpg\", \"https://example.com/house-6.jpg\" ], \"amenities\": [ \"Private Garage\", \"Front Lawn\", \"Backyard\", \"Rooftop Terrace\", \"Balcony\", \"Generator\", \"24/7 Security\", \"CCTV\", \"High-Speed Internet\", \"Servant Room\" ], \"availableFrom\": \"2026-09-01T00:00:00.000Z\"}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 201, \"message\": \"Property updated successfully\", \"data\": { \"id\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\", \"landlordId\": \"26d8cc7f-9b13-4fe2-bfda-df8eb2190195\", \"categoryId\": \"36788eab-f75e-488c-8120-8252fab6c49c\", \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\", \"slug\": \"elegant-5-bedroom-duplex-house-in-bashundhara-ra\", \"description\": \"A beautifully designed duplex house with spacious living areas, a landscaped backyard, modern kitchen, and dedicated parking. Perfect for large families seeking comfort and privacy.\", \"rentAmount\": \"110000\", \"securityDeposit\": \"220000\", \"address\": \"House 27, Block F, Bashundhara Residential Area\", \"city\": \"Dhaka\", \"area\": \"Bashundhara R/A\", \"country\": \"Bangladesh\", \"postalCode\": \"1229\", \"bedrooms\": 5, \"bathrooms\": 5, \"type\": \"UNKNOWN\", \"sizeSqft\": \"3600\", \"images\": [ \"`[<code>https://example.com/house-4.jpg\"</code>](https://example.com/house-4.jpg)`, \"`[<code>https://example.com/house-5.jpg\"</code>](https://example.com/house-5.jpg)`, \"`[<code>https://example.com/house-6.jpg\"</code>](https://example.com/house-6.jpg)`], \"amenities\": [ \"Private Garage\", \"Front Lawn\", \"Backyard\", \"Rooftop Terrace\", \"Balcony\", \"Generator\", \"24/7 Security\", \"CCTV\", \"High-Speed Internet\", \"Servant Room\" ], \"status\": \"PUBLISHED\", \"isAvailable\": true, \"availableFrom\": \"2026-09-01T00:00:00.000Z\", \"userId\": null, \"createdAt\": \"2026-07-18T15:07:32.199Z\", \"updatedAt\": \"2026-07-19T12:21:36.348Z\" } }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Property By Id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/properties/318d40fc-a7dc-4e04-a197-d697dd26d3ff",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "landlord",
+                "properties",
+                "318d40fc-a7dc-4e04-a197-d697dd26d3ff"
+              ]
+            },
+            "description": "Deletes a property listing by its ID. Requires a Landlord or Admin Bearer token.\n\n**DELETE API**\n\n[https://rent-nest-two.vercel.app/api/landlord/properties/b28f71eb-5cdd-43ed-bb92-b95dae2ec7f7](https://rent-nest-two.vercel.app/api/landlord/properties/b28f71eb-5cdd-43ed-bb92-b95dae2ec7f7)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Property Deleted Successfully!\",   \"data\": null   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Properties Rental Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/requests",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "landlord",
+                "requests"
+              ]
+            },
+            "description": "Retrieves all rental requests submitted for the authenticated landlord's properties. Requires a Landlord Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/landlord/requests](https://rent-nest-two.vercel.app/api/landlord/requests)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Retrieved all rental requests for landlord's properties successfully!\",   \"data\": [   {   \"id\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\",   \"propertyId\": \"976a6056-a5ab-4f90-9657-a036a2a79294\",   \"tenantId\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\",   \"status\": \"PAID\",   \"moveInDate\": \"2026-08-01T00:00:00.000Z\",   \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",   \"totalMonths\": 12,   \"monthlyRent\": \"120000\",   \"totalAmount\": \"1440000\",   \"tenantMessage\": \"I want to rent this house for my family.\",   \"landlordNote\": \"Yes, you can contact me.\",   \"approvedAt\": \"2026-07-19T00:20:52.439Z\",   \"rejectedAt\": null,   \"paidAt\": \"2026-07-19T00:22:48.565Z\",   \"completedAt\": null,   \"createdAt\": \"2026-07-19T00:19:42.147Z\",   \"updatedAt\": \"2026-07-19T00:22:49.332Z\",   \"tenant\": {   \"id\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\",   \"name\": \"Abdul Jabbar\",   \"email\": \"`[<code>abduljabbar@example.com</code>](https://mailto:abduljabbar@example.com)`\",   \"phone\": \"+8801711111111\"   },   \"properties\": {   \"id\": \"976a6056-a5ab-4f90-9657-a036a2a79294\",   \"title\": \"Luxury Penthouse in Gulshan 1\",   \"rentAmount\": \"120000\",   \"city\": \"Dhaka\",   \"area\": \"Gulshan\"   }   },   ]   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Approve Or Reject Request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"APPROVED\",\n    \"landlordNote\": \"Yes, you can contact me.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/landlord/requests/0bb9a424-d2c5-422a-b918-3288fec962f9",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "landlord",
+                "requests",
+                "0bb9a424-d2c5-422a-b918-3288fec962f9"
+              ]
+            },
+            "description": "Approves or rejects a tenant's rental request by its ID. Requires a Landlord Bearer token.\n\n**PATCH API**\n\n[https://rent-nest-two.vercel.app/api/landlord/requests/0bb9a424-d2c5-422a-b918-3288fec962f9](https://rent-nest-two.vercel.app/api/landlord/requests/0bb9a424-d2c5-422a-b918-3288fec962f9)\n\n**REQUEST BODY**\n\n`{`\n\n`\"status\": \"APPROVED\",`\n\n`\"landlordNote\": \"Welcome! Please complete the payment.\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Rental Request Approved or Rejected Successfully!\",   \"data\": {   \"id\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\",   \"propertyId\": \"976a6056-a5ab-4f90-9657-a036a2a79294\",   \"tenantId\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\",   \"status\": \"APPROVED\",   \"moveInDate\": \"2026-08-01T00:00:00.000Z\",   \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",   \"totalMonths\": 12,   \"monthlyRent\": \"120000\",   \"totalAmount\": \"1440000\",   \"tenantMessage\": \"I want to rent this house for my family.\",   \"landlordNote\": \"Yes, you can contact me.\",   \"approvedAt\": \"2026-07-19T00:20:52.439Z\",   \"rejectedAt\": null,   \"paidAt\": null,   \"completedAt\": null,   \"createdAt\": \"2026-07-19T00:19:42.147Z\",   \"updatedAt\": \"2026-07-19T00:20:52.443Z\"   }   }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Rental Request",
+      "item": [
+        {
+          "name": "Submit a Rental Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"976a6056-a5ab-4f90-9657-a036a2a79294\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this house for my family.\",\n   \"monthlyRent\": \"120000\",\n   \"totalAmount\" : \"1440000\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/rentals",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "rentals"
+              ]
+            },
+            "description": "Submits a new rental request for a property. Requires a Tenant Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/rentals](https://rent-nest-two.vercel.app/api/rentals)\n\n**REQUEST BODY**\n\n`{`\n\n`\"propertyId\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",`\n\n`\"moveInDate\": \"2026-08-01T00:00:00.000Z\",`\n\n`\"moveOutDate\": \"2027-07-31T00:00:00.000Z\",`\n\n`\"totalMonths\": 12,`\n\n`\"tenantMessage\": \"I want to rent this house for my family.\",`\n\n`\"monthlyRent\": \"110000\",`\n\n`\"totalAmount\": \"1320000\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 201,   \"message\": \"Rental Request Created Successfully!\",   \"data\": {   \"id\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\",   \"propertyId\": \"976a6056-a5ab-4f90-9657-a036a2a79294\",   \"tenantId\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\",   \"status\": \"PENDING\",   \"moveInDate\": \"2026-08-01T00:00:00.000Z\",   \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",   \"totalMonths\": 12,   \"monthlyRent\": \"120000\",   \"totalAmount\": \"1440000\",   \"tenantMessage\": \"I want to rent this house for my family.\",   \"landlordNote\": null,   \"approvedAt\": null,   \"rejectedAt\": null,   \"paidAt\": null,   \"completedAt\": null,   \"createdAt\": \"2026-07-19T00:19:42.147Z\",   \"updatedAt\": \"2026-07-19T00:19:42.147Z\"   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All User Rental Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/rentals",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "rentals"
+              ]
+            },
+            "description": "Retrieves all rental requests submitted by the authenticated tenant. Requires a Tenant Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/rentals](https://rent-nest-two.vercel.app/api/rentals)\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Rental Requests retrieved successfully!\", \"data\": [ { \"id\": \"6c4d0006-34e9-451e-a396-13d0fcfa7163\", \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\", \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\", \"status\": \"PENDING\", \"moveInDate\": \"2026-08-01T00:00:00.000Z\", \"moveOutDate\": \"2027-07-31T00:00:00.000Z\", \"totalMonths\": 12, \"monthlyRent\": \"22000\", \"totalAmount\": \"72000\", \"tenantMessage\": \"I want to rent this apartment for my family.\", \"landlordNote\": null, \"approvedAt\": null, \"rejectedAt\": null, \"paidAt\": null, \"completedAt\": null, \"createdAt\": \"2026-07-10T13:34:26.936Z\", \"updatedAt\": \"2026-07-10T13:34:26.936Z\" } ]}`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get rentalRequest Details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/rentals/f93955c6-db25-4d5d-9e47-d97889744449",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "rentals",
+                "f93955c6-db25-4d5d-9e47-d97889744449"
+              ]
+            },
+            "description": "Retrieves the full details of a specific rental request by its ID. Requires a Tenant Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/rentals/f93955c6-db25-4d5d-9e47-d97889744449](https://rent-nest-two.vercel.app/api/rentals/f93955c6-db25-4d5d-9e47-d97889744449)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Rental Request retrieved successfully by request id!\",   \"data\": {   \"id\": \"f93955c6-db25-4d5d-9e47-d97889744449\",   \"propertyId\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"status\": \"PAID\",   \"moveInDate\": \"2026-08-01T00:00:00.000Z\",   \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",   \"totalMonths\": 12,   \"monthlyRent\": \"110000\",   \"totalAmount\": \"1320000\",   \"tenantMessage\": \"I want to rent this house for my family.\",   \"landlordNote\": \"Yes, you can contact me.\",   \"approvedAt\": \"2026-07-18T17:07:03.453Z\",   \"rejectedAt\": null,   \"paidAt\": \"2026-07-18T22:53:13.148Z\",   \"completedAt\": null,   \"createdAt\": \"2026-07-18T16:26:15.151Z\",   \"updatedAt\": \"2026-07-18T22:53:13.677Z\"   }   }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get All Users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/admin/users",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "users"
+              ]
+            },
+            "description": "Retrieves a list of all registered users in the system. Requires an Admin Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/admin/users](https://rent-nest-two.vercel.app/api/admin/users)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"All users fetched successfully\",   \"data\": [   {   \"id\": \"26d8cc7f-9b13-4fe2-bfda-df8eb2190195\",   \"name\": \"Karim khan\",   \"email\": \"`[<code>landlord@example.com</code>](https://mailto:landlord@example.com)`\",   \"phone\": \"+8801711111111\",   \"profilePhoto\": null,   \"role\": \"LANDLORD\",   \"status\": \"ACTIVE\",   \"stripeCustomerId\": null,   \"hasCompletedPayment\": false,   \"createdAt\": \"2026-07-09T07:01:05.117Z\",   \"updatedAt\": \"2026-07-09T07:01:05.117Z\"   }   ]   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Users",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"ACTIVE\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/admin/users/6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "users",
+                "6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1"
+              ]
+            },
+            "description": "Updates a user's details (e.g., status) by their ID. Requires an Admin Bearer token.\n\n**PATCH API**\n\n[https://rent-nest-two.vercel.app/api/admin/users/6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1](https://rent-nest-two.vercel.app/api/admin/users/6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1)\n\n**REQUEST BODY**\n\n`{`\n\n`\"status\": \"ACTIVE\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"User status updated successfully\",   \"data\": {   \"id\": \"6fa33d5c-8083-4c60-a0f8-a43a60c3cfb1\",   \"name\": \"MR. KARIMULLAH\",   \"email\": \"`[<code>karimullah@example.com</code>](https://mailto:karimullah@example.com)`\",   \"phone\": \"+8801711111111\",   \"profilePhoto\": null,   \"role\": \"LANDLORD\",   \"status\": \"ACTIVE\",   \"stripeCustomerId\": null,   \"hasCompletedPayment\": false,   \"createdAt\": \"2026-07-09T11:34:47.209Z\",   \"updatedAt\": \"2026-07-19T12:35:36.228Z\"   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Rental Requests",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/admin/rentals",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "rentals"
+              ]
+            },
+            "description": "Retrieves all rental requests across all users and properties. Requires an Admin Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/admin/rentals](https://rent-nest-two.vercel.app/api/admin/rentals)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"All rental requests fetched successfully\",   \"data\": [   {   \"id\": \"6c4d0006-34e9-451e-a396-13d0fcfa7163\",   \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",   \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"status\": \"PENDING\",   \"moveInDate\": \"2026-08-01T00:00:00.000Z\",   \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",   \"totalMonths\": 12,   \"monthlyRent\": \"22000\",   \"totalAmount\": \"72000\",   \"tenantMessage\": \"I want to rent this apartment for my family.\",   \"landlordNote\": null,   \"approvedAt\": null,   \"rejectedAt\": null,   \"paidAt\": null,   \"completedAt\": null,   \"createdAt\": \"2026-07-10T13:34:26.936Z\",   \"updatedAt\": \"2026-07-10T13:34:26.936Z\"   },`\n\n`]   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Properties",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",\n  \"moveInDate\": \"2026-08-01T00:00:00.000Z\",\n  \"moveOutDate\": \"2027-07-31T00:00:00.000Z\",\n  \"totalMonths\": 12,\n  \"tenantMessage\": \"I want to rent this apartment for my family.\",\n   \"monthlyRent\": \"22000\",\n   \"totalAmount\" : \"72000\"\n}\n\n\n//   monthlyRent   Decimal      @db.Decimal(12, 2)\n//   totalAmount   Decimal      @db.Decimal(12, 2)\n\n//   landlordNote  String?\n//   approvedAt    DateTime?\n//   rejectedAt    DateTime?\n//   paidAt        DateTime?\n//   completedAt   DateTime?"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/admin/properties",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "properties"
+              ]
+            },
+            "description": "Retrieves all property listings across all landlords. Requires an Admin Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/admin/properties](https://rent-nest-two.vercel.app/api/admin/properties)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"All properties fetched successfully\",   \"data\": [   {   \"id\": \"9c4ee9c5-9aec-47d0-ad7d-aec03e773ab7\",   \"landlordId\": \"26d8cc7f-9b13-4fe2-bfda-df8eb2190195\",   \"categoryId\": \"a2c49963-308b-478c-9f42-262edff5e996\",   \"title\": \"Modern 2 Bedroom Apartment in Dhanmondi\",   \"slug\": \"modern-2-bedroom-apartment-in-dhanmondi\",   \"description\": \"A clean and sunny apartment near schools and hospitals.\",   \"rentAmount\": \"25000\",   \"securityDeposit\": \"50000\",   \"address\": \"Road 12, Dhanmondi\",   \"city\": \"Dhaka\",   \"area\": \"Dhanmondi\",   \"country\": \"Bangladesh\",   \"postalCode\": \"1209\",   \"bedrooms\": 2,   \"bathrooms\": 2,   \"type\": \"UNKNOWN\",   \"sizeSqft\": \"1100\",   \"images\": [   \"`[<code>https://example.com/property-1.jpg\"</code>](https://example.com/property-1.jpg)`,   \"`[<code>https://example.com/property-2.jpg\"</code>](https://example.com/property-2.jpg)`   ],   \"amenities\": [   \"WiFi\",   \"Lift\",   \"Generator\",   \"Parking\"   ],   \"status\": \"PUBLISHED\",   \"isAvailable\": true,   \"availableFrom\": \"2026-08-01T00:00:00.000Z\",   \"userId\": null,   \"createdAt\": \"2026-07-09T15:45:39.503Z\",   \"updatedAt\": \"2026-07-09T15:45:39.503Z\"   },         ]   }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Create Session",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "2d249101-9162-4aaf-843-d08a561e188a",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalRequestId\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/payments/create",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "create"
+              ]
+            },
+            "description": "Creates a Stripe payment session for an approved rental request. Requires a Tenant Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/payments/create](https://rent-nest-two.vercel.app/api/payments/create)\n\n**REQUEST BODY**\n\n`{`\n\n`\"rentalRequestId\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 201,   \"message\": \"Stripe checkout session created successfully!\",   \"data\": {   \"paymentId\": \"66ae91fd-b173-4a34-bd6b-3b95dd48e4e9\",   \"checkoutUrl\": \"`[<code>https://checkout.stripe.com/c/pay/cs_test_a1DbIVpq0qhGO4Q8kknpku2DsTAcnNgTcGp45zw07lG101GrpT29u1c00f#fidnandhYHdWcXxpYCc/J2FgY2RwaXEnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc/J3VuWnFgdnFaMDRRd3NRSUlEM1FvfVFOd3RDTmR1YDMzQmpEd2dIXWlfQ09BRGZHbTVDV1BWbWJiSE5VbG9BSGhyS0p9RDFxTEZoZk9GNlZJZm82bzdsSDEwQkNsMGFQQ3M1NXNKQX1nZEZKJyknY3dqaFZgd3Ngdyc/cXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic/cXdwYHgl\"</code>](https://checkout.stripe.com/c/pay/cs_test_a1DbIVpq0qhGO4Q8kknpku2DsTAcnNgTcGp45zw07lG101GrpT29u1c00f#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWnFgdnFaMDRRd3NRSUlEM1FvfVFOd3RDTmR1YDMzQmpEd2dIXWlfQ09BRGZHbTVDV1BWbWJiSE5VbG9BSGhyS0p9RDFxTEZoZk9GNlZJZm82bzdsSDEwQkNsMGFQQ3M1NXNKQX1nZEZKJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl)`,   \"stripeCheckoutSessionId\": \"cs_test_a1DbIVpq0qhGO4Q8kknpku2DsTAcnNgTcGp45zw07lG101GrpT29u1c00f\",   \"amount\": 120000,   \"currency\": \"bdt\",   \"status\": \"PENDING\"   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Payment History",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/payments",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            },
+            "description": "Retrieves the payment history for the authenticated user. Requires a Tenant or Admin Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/payments](https://rent-nest-two.vercel.app/api/payments)\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Payments retrieved successfully!\", \"data\": [ { \"id\": \"66ae91fd-b173-4a34-bd6b-3b95dd48e4e9\", \"rentalRequestId\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\", \"payerId\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\", \"amount\": \"120000\", \"currency\": \"bdt\", \"status\": \"COMPLETED\", \"transactionId\": \"pi_3TuiVGLA6TjxTKrq0IV6fjnA\", \"stripeCheckoutSessionId\": \"cs_test_a1DbIVpq0qhGO4Q8kknpku2DsTAcnNgTcGp45zw07lG101GrpT29u1c00f\", \"stripePaymentIntentId\": \"pi_3TuiVGLA6TjxTKrq0IV6fjnA\", \"stripeCustomerId\": \"cus_UuXaIkxOSSrxzs\", \"paidAt\": \"2026-07-19T00:22:48.563Z\", \"createdAt\": \"2026-07-19T00:22:23.683Z\", \"updatedAt\": \"2026-07-19T00:22:49.259Z\", \"payer\": { \"id\": \"3c16b1bc-c887-4e1c-8337-c352946467ee\", \"name\": \"Abdul Jabbar\", \"email\": \"`[<code>abduljabbar@example.com</code>](https://mailto:abduljabbar@example.com)`\" }, \"payment\": { \"id\": \"0bb9a424-d2c5-422a-b918-3288fec962f9\", \"status\": \"PAID\", \"monthlyRent\": \"120000\", \"properties\": { \"id\": \"976a6056-a5ab-4f90-9657-a036a2a79294\", \"title\": \"Luxury Penthouse in Gulshan 1\", \"city\": \"Dhaka\" } } }, ]}`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment Details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/payments/bee42a18-76fc-4849-9096-ad3f85fcb07a",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "bee42a18-76fc-4849-9096-ad3f85fcb07a"
+              ]
+            },
+            "description": "Retrieves the details of a specific payment by its ID. Requires a Tenant or Admin Bearer token.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/payments/:id](https://rent-nest-two.vercel.app/api/payments/pay_001)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Payment retrieved successfully!\",   \"data\": {   \"id\": \"bee42a18-76fc-4849-9096-ad3f85fcb07a\",   \"rentalRequestId\": \"f93955c6-db25-4d5d-9e47-d97889744449\",   \"payerId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"amount\": \"110000\",   \"currency\": \"bdt\",   \"status\": \"COMPLETED\",   \"transactionId\": \"pi_3Tuh6ZLA6TjxTKrq1LXLhda4\",   \"stripeCheckoutSessionId\": \"cs_test_a1CTHqp1m5rOD7pkzZFIVitFebnwctyVXfM5mi2shi93HKdqMr84qjzSJq\",   \"stripePaymentIntentId\": \"pi_3Tuh6ZLA6TjxTKrq1LXLhda4\",   \"stripeCustomerId\": \"cus_UrmZXQNPZq2z5Y\",   \"paidAt\": \"2026-07-18T22:53:13.147Z\",   \"createdAt\": \"2026-07-18T22:52:58.130Z\",   \"updatedAt\": \"2026-07-18T22:53:13.607Z\",   \"payer\": {   \"id\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"name\": \"Tanvir Hasan\",   \"email\": \"`[<code>tenant@example.com</code>](https://mailto:tenant@example.com)`\"   },   \"payment\": {   \"id\": \"f93955c6-db25-4d5d-9e47-d97889744449\",   \"status\": \"PAID\",   \"monthlyRent\": \"110000\",   \"properties\": {   \"id\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\",   \"city\": \"Dhaka\",   \"address\": \"House 27, Block F, Bashundhara Residential Area\"   }   }   }   }`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Review",
+      "item": [
+        {
+          "name": "Post Review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "2d249101-9162-4aaf-843-d08a561e188a",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",\n  \"rating\": 4,\n  \"comment\": \"Great place to live!\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/reviews",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "reviews"
+              ]
+            },
+            "description": "Submits a review for a completed rental. Requires a Tenant Bearer token.\n\n**POST API**\n\n[https://rent-nest-two.vercel.app/api/reviews](https://rent-nest-two.vercel.app/api/reviews)\n\n**REQUEST BODY**\n\n`{`\n\n`\"rentalRequestId\": \"f93955c6-db25-4d5d-9e47-d97889744449\",`\n\n`\"rating\": 5,`\n\n`\"comment\": \"Great Onboarding support!\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 201,   \"message\": \"Review created successfully!\",   \"data\": {   \"id\": \"47b224dd-4fd0-4ea2-8a11-5cdaf52e5d81\",   \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"rentalRequestId\": \"f93955c6-db25-4d5d-9e47-d97889744449\",   \"propertyId\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"rating\": 5,   \"comment\": \"Great Onboarding support!\",   \"status\": \"PUBLISHED\",   \"createdAt\": \"2026-07-18T23:54:43.798Z\",   \"updatedAt\": \"2026-07-18T23:54:43.798Z\",   \"tenant\": {   \"id\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"name\": \"Tanvir Hasan\",   \"email\": \"`[<code>tenant@example.com</code>](https://mailto:tenant@example.com)`\"   },   \"property\": {   \"id\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\",   \"city\": \"Dhaka\"   }   }   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Review",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "2d249101-9162-4aaf-843-d08a561e188a",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",\n  \"rating\": 4,\n  \"comment\": \"Great place to live!\"\n}\n"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "b3976e9f-34b8-4fec-a551-8c15c25dbccd"
+              ]
+            },
+            "description": "Retrieves a single review by its ID. Public endpoint — no authentication required.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd](https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd)\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Review retrieved successfully\", \"data\": { \"id\": \"b3976e9f-34b8-4fec-a551-8c15c25dbccd\", \"rating\": 5, \"comment\": \"Great Onboarding support!\" } }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "2d249101-9162-4aaf-843-d08a561e188a",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great place to live Always!\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "b3976e9f-34b8-4fec-a551-8c15c25dbccd"
+              ]
+            },
+            "description": "Updates an existing review by its ID. Requires the Tenant (author) Bearer token.\n\n**PATCH API**\n\n[https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd](https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd)\n\n**REQUEST BODY**\n\n`{`\n\n`\"rating\": 5,`\n\n`\"comment\": \"Great place to live Always!\"`\n\n`}`\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Review updated successfully\", \"data\": { \"id\": \"b3976e9f-34b8-4fec-a551-8c15c25dbccd\", \"rating\": 5 } }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Reviews",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "2d249101-9162-4aaf-843-d08a561e188a",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",\n  \"rating\": 4,\n  \"comment\": \"Great place to live!\"\n}\n"
+            },
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/reviews",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "reviews"
+              ]
+            },
+            "description": "Retrieves all reviews. Public endpoint — admins can see all reviews regardless of status.\n\n**GET API**\n\n[https://rent-nest-two.vercel.app/api/reviews](https://rent-nest-two.vercel.app/api/reviews)\n\n**REQUEST RESPONSE**\n\n`{   \"success\": true,   \"statusCode\": 200,   \"message\": \"Reviews retrieved successfully!\",   \"data\": [   {   \"id\": \"47b224dd-4fd0-4ea2-8a11-5cdaf52e5d81\",   \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"rentalRequestId\": \"f93955c6-db25-4d5d-9e47-d97889744449\",   \"propertyId\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"rating\": 5,   \"comment\": \"Great Onboarding support!\",   \"status\": \"PUBLISHED\",   \"createdAt\": \"2026-07-18T23:54:43.798Z\",   \"updatedAt\": \"2026-07-18T23:54:43.798Z\",   \"tenant\": {   \"id\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"name\": \"Tanvir Hasan\",   \"email\": \"`[<code>tenant@example.com</code>](https://mailto:tenant@example.com)`\"   },   \"property\": {   \"id\": \"523c4166-1cf0-4cc5-b42d-fd8ce91220b7\",   \"title\": \"Elegant 5 Bedroom Duplex House in Bashundhara R/A\",   \"city\": \"Dhaka\"   }   },   {   \"id\": \"b3976e9f-34b8-4fec-a551-8c15c25dbccd\",   \"tenantId\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"rentalRequestId\": \"b7d7147f-b471-41fd-9dc2-5c46051e69fe\",   \"propertyId\": \"2e35aecc-0277-49e4-b09c-335e60526832\",   \"rating\": 4,   \"comment\": \"Great Onboarding support!\",   \"status\": \"PUBLISHED\",   \"createdAt\": \"2026-07-11T16:50:56.251Z\",   \"updatedAt\": \"2026-07-18T23:55:15.571Z\",   \"tenant\": {   \"id\": \"7e1f5913-7747-4565-8f5d-8aba23720e72\",   \"name\": \"Tanvir Hasan\",   \"email\": \"`[<code>tenant@example.com</code>](https://mailto:tenant@example.com)`\"   },   \"property\": {   \"id\": \"2e35aecc-0277-49e4-b09c-335e60526832\",   \"title\": \"Spacious 4 Bedroom Family Flat in Banani\",   \"city\": \"Dhaka\"   }   }   ]   }`"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0hfy}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://rent-nest-two.vercel.app/api/reviews/:id",
+              "protocol": "https",
+              "host": [
+                "rent-nest-two",
+                "vercel",
+                "app"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "review-id-here"
+                }
+              ]
+            },
+            "description": "Deletes a review by its ID. Requires the Tenant (author) or Admin Bearer token.\n\n**DELETE API**\n\n[https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd](https://rent-nest-two.vercel.app/api/reviews/b3976e9f-34b8-4fec-a551-8c15c25dbccd)\n\n**REQUEST RESPONSE**\n\n`{ \"success\": true, \"statusCode\": 200, \"message\": \"Review deleted successfully\" }`"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_15x1"
+    },
+    {
+      "key": "auth_secret_0w5v"
+    },
+    {
+      "key": "auth_secret_0hfy"
+    }
+  ]
+}

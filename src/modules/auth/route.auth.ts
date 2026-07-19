@@ -10,7 +10,7 @@ router.post("/register",authController.registerUser);
 
 router.post("/login", authController.loginUser);
 
-router.get("/me", auth(UserRole.TENANT, UserRole.LANDLORD, UserRole.ADMIN), authController.getMyProfile);
+router.get("/me", auth(UserRole.TENANT, UserRole.LANDLORD), authController.getMyProfile);
 
 router.post("/logout", auth(UserRole.TENANT, UserRole.LANDLORD, UserRole.ADMIN), authController.logoutUser);
 
